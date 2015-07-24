@@ -73,7 +73,7 @@
                                 echo "Not Active";
                             } ?></span></td>
                                 <td class="center">
-                                    <a class="btn btn-info" href="">
+                                    <a class="btn btn-info" href="add_page.php?id=<?=$row['page_id']?>">
                                         <i class="glyphicon glyphicon-edit icon-white"></i>
                                         Edit
                                     </a>

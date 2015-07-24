@@ -31,7 +31,7 @@ if(strlen(Request::post("submit"))){
                         <a href="page_category.php">Home</a>
                     </li>
                     <li>
-                        <a href="#">Add/Edit pagecategory</a>
+                        Add / Edit Page Category
                     </li>
                 </ul>
             </div>
@@ -40,7 +40,7 @@ if(strlen(Request::post("submit"))){
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i class="glyphicon glyphicon-edit"></i>Add/Edit Menu Category</h2>
+                            <h2><i class="glyphicon glyphicon-edit"></i> Add / Edit Page Category</h2>
 
 
                         </div>
@@ -60,10 +60,11 @@ if(strlen(Request::post("submit"))){
                                 }
                             }
                             ?>
+                            <div class="error"><?=  Error::displayError()?></div>
                             <form action="" method="POST" name="pagecategory_frm" id="pagecategory_frm">
                                 <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
                                     <tr>
-                                        <td><label class="control-label" for="selectError">Menu Category</label></td>
+                                        <td><label class="control-label" for="selectError">Name</label></td>
                                         <td><div class="input-group" >
                                                 <span class="input-group-addon"></span>
                                                 <input type="text" name="pagecategory_name"  value="<?php echo $pagecategory_name;?>" class="form-control" placeholder="pagecategory" required="required" >
@@ -71,7 +72,7 @@ if(strlen(Request::post("submit"))){
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><label class="control-label" for="selectError">Menu URL</label></td>
+                                        <td><label class="control-label" for="selectError">URL</label></td>
                                         <td><div class="input-group" >
                                                 <span class="input-group-addon"></span>
                                                 <input type="text" name="pagecategory_url"  value="<?php echo $pagecategory_url;?>" class="form-control" placeholder="pagecategory" required="required" >

@@ -62,7 +62,7 @@
                                 echo "Not Active";
                             } ?></span></td>
                                 <td class="center" >
-                                    <a class="btn btn-info" href="" name="edit"><i class="glyphicon glyphicon-edit icon-white"></i>Edit</a>
+                                    <a class="btn btn-info" href="add_menu.php?id=<?=$row['id']?>" name="edit"><i class="glyphicon glyphicon-edit icon-white"></i>Edit</a>
                                     <a class="btn btn-danger" href="" name="delete" onClick="return confirm('Are you sure want to delete record')">
                                         <i class="glyphicon glyphicon-trash icon-white"></i>Delete</a>
                                 </td>

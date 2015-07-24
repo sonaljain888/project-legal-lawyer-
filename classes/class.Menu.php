@@ -12,6 +12,28 @@
  * @author anjain
  */
 class Menu {
+    
+     public $menu_id = null;
+    public $menu_name = null;
+    public $category_id = null;
+    public $parent_id = null;
+    public $image = null;
+    public $url = null;
+    public $access_type = null;
+    public $menu_order = null;
+    public $menu_status = null;
+
+    public function tableName() {
+        return "menu";
+    }
+
+    public function get($key) {
+        return $this->$key;
+    }
+
+    public function set($key, $val) {
+        $this->$key = $val;
+    }
 
     public static function getMenus($access_type, $category_name) {
         return self::_init($access_type, $category_name);
@@ -80,28 +102,6 @@ class Menu {
             return $row[0]['url'] . "/";
         }
         return "";
-    }
-
-    public $menu_id = null;
-    public $menu_name = null;
-    public $category_id = null;
-    public $parent_id = null;
-    public $image = null;
-    public $url = null;
-    public $access_type = null;
-    public $menu_order = null;
-    public $menu_status = null;
-
-    public function tableName() {
-        return "menu";
-    }
-
-    public function get($key) {
-        return $this->$key;
-    }
-
-    public function set($key, $val) {
-        $this->$key = $val;
     }
 
     public function getAll() {

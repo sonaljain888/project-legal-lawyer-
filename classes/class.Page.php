@@ -24,6 +24,7 @@ class Page {
     public $description = null;
     public $access_type = null;
     public $page_status = null;
+    
     public  function getPageDetails(){
         $db = new Db();
         $where = "";
@@ -94,9 +95,9 @@ class Page {
                 Keyword=$keyword, title=$title, description=$description, author=$author, modified_by=$modified, 
                    active=$active, access_type=$access_type"; 
              if($db->query($query)){
-                if($db->affectedRows()){
                     return true;
-                }
+            }else{
+                Error::set($db->error());
             }
         }
         return false;
@@ -109,5 +110,15 @@ class Page {
              LEFT JOIN page_category pc ON pc.id = p.category_id 
              LEFT JOIN access_type at on at.id = p.access_type";
             return $db->select($query);
+    }
+    
+    public function getName() {
+        if (is_numeric($this->page_id)) {
+            $db = new Db();
+            $id = $db->quote($this->page_id);
+            $query = "SELECT * FROM " . $this->tableName() . " WHERE page_id = " . $id;
+            return $db->select($query);
+        }
+        return false;
     }
 }

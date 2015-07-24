@@ -104,8 +104,12 @@ if(strlen(Request::post("submit"))){
                                                     $menuObj = new MenuCategory();
                                                     $rows = $menuObj->getAll();
                                                     foreach ($rows as $row) {
+                                                        $selected = "";
+                                                        if($row['id'] == $category_id){
+                                                            $selected = 'selected="selected"';
+                                                        }
                                                         ?>
-                                                        <option value="<?php echo $row['id'] ?>"><?php echo $row['name']; ?> </option>
+                                                        <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['name']; ?> </option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -148,8 +152,12 @@ if(strlen(Request::post("submit"))){
                                                     $menuObj = new AccessType();
                                                     $rows = $menuObj->getAll();
                                                     foreach ($rows as $row) {
+                                                        $selected = "";
+                                                        if($row['id'] == $access_type){
+                                                            $selected = 'selected="selected"';
+                                                        }
                                                         ?>
-                                                        <option value="<?php echo $row['id'] ?>"><?php echo $row['type']; ?> </option>
+                                                        <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['type']; ?> </option>
                                                     <?php } ?>
                                                 </select>
                                             </div>

@@ -22,13 +22,6 @@ class MenuCategory extends Menu{
         return "menu_category";
         
     }
-    public function get($key){
-        return $this->$key;
-    }
-    
-    public function set($key , $val){
-        $this->$key = $val;
-    }
     
     public function getAll(){
         $db= new Db();

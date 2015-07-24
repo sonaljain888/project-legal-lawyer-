@@ -74,7 +74,7 @@ if(strlen(Request::post("submit"))){
                                     $bottom_description= $row['bottem_description'];
                                     $keyword= $row['Keyword'];
                                     $title= $row['title'];
-                                    $discription= $row['description'];
+                                    $description= $row['description'];
                                     $author= $row['author'];
                                     $modified= $row['modified_by'];
                                     $access_type=$row['access_type'];
@@ -83,6 +83,7 @@ if(strlen(Request::post("submit"))){
                             }
                             ?>
                             <div class="control-group">
+                                <div class="error"><?=  Error::displayError()?></div>
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive" >
                                         <tr>
@@ -96,8 +97,12 @@ if(strlen(Request::post("submit"))){
                                                         $pagecategoryObj = new PageCategory();
                                                         $rows = $pagecategoryObj->getAll();
                                                         foreach ($rows as $row) {
+                                                            $selected = "";
+                                                            if($row['id'] == $category_id){
+                                                                $selected = 'selected="selected"';
+                                                            }
                                                             ?>
-                                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['name']; ?> </option>
+                                                            <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['name']; ?> </option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -108,7 +113,7 @@ if(strlen(Request::post("submit"))){
                                             <td>
                                                 <div class="input-group">
                                                     <span class="input-group-addon"></span>
-                                                    <input type="text" name="page_name" vlaue="<?php echo $page_name; ?>" class="form-control" placeholder="Page Name" required="">
+                                                    <input type="text" name="page_name" value="<?php echo $page_name; ?>" class="form-control" placeholder="Page Name" required="">
                                                 </div> 
                                             </td>
                                         </tr>
@@ -117,7 +122,7 @@ if(strlen(Request::post("submit"))){
                                             <td>
                                                 <div class="input-group">
                                                     <span class="input-group-addon"></span>
-                                                    <input type="text" name="url" vlaue="<?php echo $url; ?>" class="form-control" placeholder="Page Url" required="">
+                                                    <input type="text" name="url" value="<?php echo $url; ?>" class="form-control" placeholder="Page Url" required="">
                                                 </div> 
                                             </td>
                                         </tr>
@@ -127,7 +132,7 @@ if(strlen(Request::post("submit"))){
                                         <tr>
                                             <td colspan="2">
                                                 <div class="input-group" style="width: 100%;">
-                                                    <textarea  id="description" name="top_description" value<?php echo $top_description ;?> >
+                                                    <textarea  id="description" name="top_description" ><?php echo $top_description ;?>
                                                     </textarea>
                                                     <script>
                                                         CKEDITOR.replace('top_description');
@@ -141,7 +146,7 @@ if(strlen(Request::post("submit"))){
                                         <tr>
                                             <td colspan="2">
                                                 <div class="input-group"  style="width: 100%;">
-                                                    <textarea  id="description" name="bottom_description" value="<?php echo $bottom_description ;?>">
+                                                    <textarea  id="description" name="bottom_description"><?php echo $bottom_description ;?>
                                                     </textarea>
                                                     <script>
                                                         CKEDITOR.replace('bottom_description');
@@ -173,7 +178,7 @@ if(strlen(Request::post("submit"))){
                                         <tr>
                                             <td colspan="2">
                                                 <div class="input-group"  style="width: 100%;">
-                                                    <textarea  id="description" name="pagedescription" value="<?= $description; ?>">
+                                                    <textarea  id="description" name="pagedescription"><?= $description; ?>
                                                     </textarea>
                                                     <script>
                                                         CKEDITOR.replace('pagedescription');
@@ -193,8 +198,12 @@ if(strlen(Request::post("submit"))){
                                                         $accessObj = new AccessType();
                                                         $rows = $accessObj->getAll();
                                                         foreach ($rows as $row) {
+                                                            $selected = "";
+                                                            if($row['id'] == $access_type){
+                                                                $selected = 'selected="selected"';
+                                                            }
                                                             ?>
-                                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['type']; ?> </option>
+                                                            <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['type']; ?> </option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -204,13 +213,12 @@ if(strlen(Request::post("submit"))){
                                             <td ><label class="control-label" for="selectError">Status</label> </td>
                                             <td>
                                                 <div class="input-group" >
-                                                    <span class="input-group-addon"></span>
                                                     <input type="checkbox" name="active" <?php
-                                            if($page_status == 1)
-                                            {
-                                                echo "checked";
-                                            }
-                                            ?>>
+                                                    if($page_status == 1)
+                                                    {
+                                                        echo "checked";
+                                                    }
+                                                    ?>>
                                                 </div> 
                                             </td>
                                         </tr>
