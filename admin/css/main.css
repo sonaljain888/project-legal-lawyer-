@@ -1,0 +1,24 @@
+/* 
+    Document   : main
+    Created on : Jul 9, 2015, 5:39:11 PM
+    Author     : admin pc
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.btnsubmit
+{
+    
+}
+
+#show-dataindiv{
+    width:800px;
+    overflow: scroll;
+}
+
+#div-overflow
+{
+    width:100%;
+    overflow: scroll;
+    overflow-y:hidden; 
+}
