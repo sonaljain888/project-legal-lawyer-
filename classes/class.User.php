@@ -76,10 +76,7 @@ class User {
     function registration() {
         if (isset($this->data['request']) && isset($this->data["request"]['submit'])) {
             $db = new Db();
-            $db->connect();
-
-            if ($this->checkpassword($this->data['request']['password'])) {
-                if ($this->checkUserEmail($this->data['request']['email'])) {
+            $db->connect(); 
                     $name = $db->quote($this->data['request']["name"]);
                     $email = $db->quote($this->data['request']["email"]);
                     $password = $db->quote($this->data['request']["password"]);
@@ -92,11 +89,19 @@ class User {
                     $experience = $db->quote($this->data['request']["experience"]);
                     $specialization = $db->quote($this->data['request']["specialization"]);
                     $pra_court = $db->quote($this->data['request']["pra_court"]);
-                    $sql = "INSERT INTO user (Name,EmailId,Password,Website,Mobile,Address,City,Location,Education,
+                    if ($this->checkUserEmail($this->data['request']['email'])) {
+                   if ($this->checkpassword($this->data['request']['password'])){ 
+                    $sql = "INSERT INTO ".$this->tableName()." (Name,EmailId,Password,Website,Mobile,Address,City,Location,Education,
                 Experiance,Specialization,PracticingCourt) 
                 values  ($name,$email,$password,$website,$mobile,$add,$city,$location,$education,$experience,
-                $specialization,$pra_court)";
-                    $db->query($sql);
+                $specialization,$pra_court)
+                    ON DUPLICATE KEY UPDATE 
+                    Name=$name,EmailId=$email, Password=$password,Website=$website,Mobile=$mobile,Address=$add,City=$city,
+                        Location=$location,Education=$education, Experiance=$experience,Specialization=$specialization,
+                            PracticingCourt=$pra_court  ";
+                    if($db->query($sql)){
+                        return TRUE;
+                    }    
                 }
             }
         }

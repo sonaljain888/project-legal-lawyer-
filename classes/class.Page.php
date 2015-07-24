@@ -106,7 +106,7 @@ class Page {
             $db = new Db();
             $query = "SELECT p . * , pc.name as category_name, at.type
              FROM ".$this->tableName()." p
-             LEFT JOIN menu_category pc ON pc.id = p.category_id 
+             LEFT JOIN page_category pc ON pc.id = p.category_id 
              LEFT JOIN access_type at on at.id = p.access_type";
             return $db->select($query);
     }

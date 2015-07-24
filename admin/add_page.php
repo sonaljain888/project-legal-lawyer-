@@ -15,7 +15,6 @@ if(strlen(Request::post("submit"))){
     $description = Request::post("pagedescription");
     $access_type =  Request::post("access_type");
     $page_status = Validation::getStautsTinyVal(Request::post("active"));
-    $access_type =  Request::post("access_type");
     $pageObj = new Page();
     $pageObj->set("page_id", $page_id);
     $pageObj->set("category_id", $category_id);

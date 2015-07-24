@@ -68,9 +68,9 @@
                         <li class="accordion">
                             <a href="#"><i class="glyphicon glyphicon-plus"></i><span> Manage Documents</span></a>
                             <ul class="nav nav-pills nav-stacked ">
-                                <li><a href="type_document.php"><span> Type of Document</span></a></li>
-                                <li><a href="type_doc_cat.php"><span>Document Category</span></a></li>
-                                <li><a href="blog_cat.php"><span> Documents</span></a></li>
+                                <li><a href="documentType.php"><span> Type of Document</span></a></li>
+                                <li><a href="documentCategory.php"><span>Document Category</span></a></li>
+                                <li><a href="document.php"><span> Documents</span></a></li>
                            </ul>
                         </li>
                         <li><a class="ajax-link" href="bankdetails.php"><i class="glyphicon glyphicon-calendar"></i><span> Bank Details</span></a>

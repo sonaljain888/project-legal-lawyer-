@@ -25,6 +25,9 @@ define("ADMIN_CSS_URL", ADMIN_WEB_URL."/css");
 define("ADMIN_JS_URL", ADMIN_WEB_URL."/js");
 define("ADMIN_IMG_URL", ADMIN_WEB_URL."/images");
 define("ADMIN_BOWER_C0MPONENTS_URL", ADMIN_WEB_URL."/bower_components");
+define("MENU_IMG_FOLDER", "images/menus");
+define("MENU_IMG_URL", SERVER_URL."/".MENU_IMG_FOLDER);
+
 
 /*
  * DB Configuration

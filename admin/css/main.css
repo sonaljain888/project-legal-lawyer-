@@ -11,8 +11,8 @@
     
 }
 
-#show-dataindiv{
-    width:800px;
+.show-dataindiv{
+    width:600px;
     overflow: scroll;
 }
 

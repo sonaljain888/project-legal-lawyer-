@@ -58,16 +58,16 @@
                                 <td class="center"><?php echo $row['category_name']; ?></td>
                                 <td class="center"><?php  echo $row['name']; ?></td>
                                 <td class="center"><?php echo $row['url']; ?></td>
-                                <td class="center" id="show-dataindiv" ><?php echo $row['top_description']; ?></td>
-                                <td class="center" id="show-dataindiv"><?php echo $row['bottem_description']; ?></td>
+                                <td class="center"><div class="show-dataindiv" ><?php echo $row['top_description']; ?></div></td>
+                                <td class="center"><div class="show-dataindiv"> <?php echo $row['bottem_description']; ?></div></td>
                                 <td class="center"><?php echo $row['Keyword']; ?></td>
-                             <td class="center"><?php echo $row['title']; ?></td>
-                                <td class="center" id="show-dataindiv"><?php echo $row['description']; ?></td>
-                             <td class="center"><?php echo $row['author']; ?></td>
-                             <td class="center"><?php echo $row['date']; ?></td>
-                      <td class="center"><?php echo $row['modified_by']; ?></td>
-                                 <td class="center"><?php echo $row['type']; ?></td>
-                                 <td class="center"><span class="label-success label label-default"><?php if ($row['active'] == 1) {
+                                <td class="center"><?php echo $row['title']; ?></td>
+                                <td class="center"><?php echo $row['description']; ?></td>
+                                <td class="center"><?php echo $row['author']; ?></td>
+                                <td class="center"><?php echo $row['date']; ?></td>
+                                <td class="center"><?php echo $row['modified_by']; ?></td>
+                                <td class="center"><?php echo $row['type']; ?></td>
+                                <td class="center"><span class="label-success label label-default"><?php if ($row['active'] == 1) {
                                 echo "Active";
                             } else {
                                 echo "Not Active";

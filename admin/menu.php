@@ -45,7 +45,11 @@
                                 ?>
                             <tr>
                                 <td class="center"><?php echo $row['id'];?></td>
-                                <td><img src="#" name="" rel=""/></td>
+                                <td><?php if($row['image']==''){     
+                                }else{ ?>
+                                    <img src="<?php echo MENU_IMG_URL."/" . $row['image'];  ?>" name="" rel=""/>
+                               <?php } ?>
+                                    </td>
                                 <td class="center"><?php echo $row['name'];?></td>
                                 <td class="center" style=""><?php echo $row['category_name'];?></td>
                                 <td class="center" style=""><?php echo $row['parent_id'];?></td>

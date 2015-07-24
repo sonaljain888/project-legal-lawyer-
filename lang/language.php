@@ -15,4 +15,7 @@ define("MISSING_ACCESS_TYPE","Missing Access Type.");
 define("NOT_MATCHING_ACCESS_TYPE", "Access Type is not matching !");
 define("MISSING_CATEGORY_NAME","Missing Category Name");
 define("NOT_MATCHING_CATEGORY_NAME", "Category name is not matching");
+define("MENU_ALREADY_EXIST", "Menu Already Exist");
+define("MENUNAME_AND_ACCESSTYPE_ALREADY_EXIST", "Menu name and Access Type Already Exist");
+define("IMAGE_ALREADY_EXIST", "Image exuts");
 

@@ -60,10 +60,6 @@
                                             <td><input id="text" type="text" name="add" placeholder="Address" required=""/></td>
                                         </tr>
                                         <tr>
-                                            <td id="label">Date:</td>
-                                            <td><input id="text" type="date" name="date" placeholder="Address" required=""/></td>
-                                        </tr>
-                                        <tr>
                                             <td id="label">Practicing City:</td>
                                             <td><input id="text" type="text" name="city" placeholder="Type city(Ex.:Banglore)" required=""/></td>
                                         </tr>
@@ -87,18 +83,15 @@
                                             <td id="label">Practicing Courts:</td>
                                             <td><input id="text"  name="pra_court" type="text" placeholder="" required=""/></td>
                                         </tr>
-                                        <tr>
-                                            <td><label id="label">Image</label></td>
-                                            <td><input type="file" name="photo" required=""></td>
-                                        </tr>
+                                       
                                         <tr>
                                             <td colspan="2" align="center">
                                                 <div class="row">
                                                     <div class="col-sm-6">
-                                              <input type="submit" value="Submit" name="submit" id="submit-btn"/>
+                                              <input type="submit" value="submit" name="submit" id="submit-btn"/>
                                                     </div>
                                                     <div class="col-sm-6">
-                                              <input type="button" value="Cancel" style="" id="cancel-btn" />  
+                                              <input type="button" value="Cancel"  id="cancel-btn" />  
                                                     </div>
                                                 </div>
                                             </td>
