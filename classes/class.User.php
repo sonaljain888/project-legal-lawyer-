@@ -26,7 +26,7 @@ class User {
                     } else {
                         Session::write("email", $row[0]["EmailId"]);
                         Session::write("userid", $row[0]["UserId"]);
-                        Session::write("access_type",$row[0]["RoleId"]);
+                        Session::write("access_type", $row[0]["RoleId"]);
                         return TRUE;
                     }
                 }
@@ -76,10 +76,14 @@ class User {
     function registration() {
         if (isset($this->data['request']) && isset($this->data["request"]['submit'])) {
             $db = new Db();
-            $db->connect(); 
+            $db->connect();
+//            if ($this->checkUserEmail($this->data['request']['email'])) {
+//                if ($this->checkpassword($this->data['request']['password'])) {
+            if($this->isEmailExist($email)) {  
+                   if($this->isMobileExist($mobile)) {      
                     $name = $db->quote($this->data['request']["name"]);
                     $email = $db->quote($this->data['request']["email"]);
-                    $password = $db->quote($this->data['request']["password"]);
+                    $pass = $db->quote($this->data['request']["password"]);
                     $website = $db->quote($this->data['request']["website"]);
                     $mobile = $db->quote($this->data['request']["mobile"]);
                     $add = $db->quote($this->data['request']["add"]);
@@ -89,34 +93,61 @@ class User {
                     $experience = $db->quote($this->data['request']["experience"]);
                     $specialization = $db->quote($this->data['request']["specialization"]);
                     $pra_court = $db->quote($this->data['request']["pra_court"]);
-                    if ($this->checkUserEmail($this->data['request']['email'])) {
-                   if ($this->checkpassword($this->data['request']['password'])){ 
-                    $sql = "INSERT INTO ".$this->tableName()." (Name,EmailId,Password,Website,Mobile,Address,City,Location,Education,
+                    if ((Validation::Email($email))&& (Validation::valid_password($pass))) {
+                         Error::set(INVALID_EMAIL && INVALID_PASSWORD);
+                    }else{
+                    $sql = "INSERT INTO " . $this->tableName() . " (Name,EmailId,Password,Website,Mobile,Address,City,Location,Education,
                 Experiance,Specialization,PracticingCourt) 
-                values  ($name,$email,$password,$website,$mobile,$add,$city,$location,$education,$experience,
-                $specialization,$pra_court)
-                    ON DUPLICATE KEY UPDATE 
-                    Name=$name,EmailId=$email, Password=$password,Website=$website,Mobile=$mobile,Address=$add,City=$city,
-                        Location=$location,Education=$education, Experiance=$experience,Specialization=$specialization,
-                            PracticingCourt=$pra_court  ";
-                    if($db->query($sql)){
+                values  ($name,$email,$pass,$website,$mobile,$add,$city,$location,$education,$experience,
+                $specialization,$pra_court)";                  
+                    if ($db->query($sql)) {
                         return TRUE;
-                    }    
+                    }
+                  }
                 }
             }
         }
     }
+    
+public function isEmailExist($email) {
 
+        $db = new Db();       
+$email = $db->quote($email);
+$query = "SELECT * FROM " . $this->tableName() . " WHERE EmailId=$email";
+        $result = $db->select($query);
+        if(!count($result)){
+                Error::set(EMAIL_ALREADY_EXIST);
+                return FALSE;
+            } else {
+            return TRUE;
+        }
+            
+        }
+public function isMobileExist($mobile) {
+
+        $db = new Db();       
+$mobile = $db->quote($mobile);
+$query = "SELECT * FROM " . $this->tableName() . " WHERE Mobile=$mobile";
+        $result = $db->select($query);
+        if(!count($result)){
+                Error::set(MOBILE_NO._ALREADY_EXIST);
+                return FALSE;
+            } else {
+            return TRUE;
+        }
+            
+        }
+        
     function profile($user_id = 0) {
-        if($user_id == 0 ){
-            if(Session::read("userid")){
+        if ($user_id == 0) {
+            if (Session::read("userid")) {
                 $user_id = Session::read("userid");
             }
         }
-        if($user_id > 0){
+        if ($user_id > 0) {
             $db = new Db();
             $user_id = $db->quote($user_id);
-            $query = "SELECT * FROM " . $this->tableName()." WHERE UserId = $user_id";
+            $query = "SELECT * FROM " . $this->tableName() . " WHERE UserId = $user_id";
             return $db->select($query);
         }
         return false;
@@ -155,21 +186,21 @@ class User {
         $sql = "delete from user where UserId=$sid";
         $db->query($sql);
     }
-    
-    public function home(){
-        if(Session::read("access_type")){
-            $access_id = Session::read("access_type"); 
-         }else{
-             $access_id = 0;
-         }
-         $access_type = Validation::getAccessType($access_id); 
-         $category_name = $access_type;
-         return Menu::getMenus($access_type, $category_name);
+
+    public function home() {
+        if (Session::read("access_type")) {
+            $access_id = Session::read("access_type");
+        } else {
+            $access_id = 0;
+        }
+        $access_type = Validation::getAccessType($access_id);
+        $category_name = $access_type;
+        return Menu::getMenus($access_type, $category_name);
     }
-    
-    public function logout($id=0) {
-       Session::logOut();
-       return true;
+
+    public function logout($id = 0) {
+        Session::logOut();
+        return true;
     }
 
 }

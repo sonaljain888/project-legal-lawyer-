@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col-sm-4 col-sm-offset-1 ">
-            
+         
             <h2>Login </h2>
                     <form action="" method="post" >
 
@@ -25,10 +25,10 @@
         </div>
         <div class="col-sm-6">
            <h2>Registration </h2>
-            <form id="form_background" action="#" method="POST" enctype="multipart/form-data" >
+            <form id="form_background" action="" method="POST" enctype="multipart/form-data" >
                 <input type="hidden" name="action" value="registration">
                 <input type="hidden" name="type" value="user">
-                
+               
                                     <table height="680" align="center" width="80%">
                                         <tr>
                                             <td id="label">Name:</td>
@@ -45,14 +45,14 @@
                                         </tr>
                                         <tr>
                                             <td id="label">Confirm Password:</td>
-                                            <td><input id="text"type="password" placeholder="Confirm Password"required=""/></td>
+                                            <td><input id="text"type="password"  placeholder="Confirm Password"required=""/></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Mobile No:</td>
                                             <td><input id="text"type="text" name="mobile" placeholder="Mobile No" required=""/></td>
                                         </tr>
                                         <tr>
-                                            <td id="label">Website:</td>
+                                            <td id="label"> Website :</td>
                                             <td><input id="text" type="url" name="website" placeholder="Website" required=""/></td>
                                         </tr>
                                         <tr>
