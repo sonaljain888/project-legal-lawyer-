@@ -35,6 +35,13 @@ class Validation {
 
  */  
     
+    public static function password_length($pass) {
+        if (strlen($pass) > 7 && strlen($pass) < 21){
+            return true;
+        }
+            return FALSE;
+    }
+    
     public static function valid_password($pass) {
     if (!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/',$pass))
         return FALSE;

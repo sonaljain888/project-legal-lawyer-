@@ -12,6 +12,28 @@
  * @author anjain
  */
 class Menu {
+    
+    public $menu_id = null;
+    public $menu_name = null;
+    public $category_id = null;
+    public $parent_id = null;
+    public $image = null;
+    public $url = null;
+    public $access_type = null;
+    public $menu_order = null;
+    public $menu_status = null;
+
+    public function tableName() {
+        return "menu";
+    }
+
+    public function get($key) {
+        return $this->$key;
+    }
+
+    public function set($key, $val) {
+        $this->$key = $val;
+    }
 
     public static function getMenus($access_type, $category_name) {
         return self::_init($access_type, $category_name);
@@ -82,28 +104,6 @@ class Menu {
         return "";
     }
 
-    public $menu_id = null;
-    public $menu_name = null;
-    public $category_id = null;
-    public $parent_id = null;
-    public $image = null;
-    public $url = null;
-    public $access_type = null;
-    public $menu_order = null;
-    public $menu_status = null;
-
-    public function tableName() {
-        return "menu";
-    }
-
-    public function get($key) {
-        return $this->$key;
-    }
-
-    public function set($key, $val) {
-        $this->$key = $val;
-    }
-
     public function getAll() {
         $db = new Db();
         $query = "SELECT m . * , mc.name as category_name, at.type
@@ -156,9 +156,9 @@ class Menu {
         $query = "SELECT category_id,name, url, access_type FROM " . $this->tableName() . "WHERE url=$url AND access_type = $access_type AND category_id = $category_id ";
         $result = $db->select($query);
         if (isset($result[0]) && count($result[0]) > 0) {
-            if ($result[0]['id'] == $this->id) {                
+            if ($result[0]['id'] == $this->menu_id) {                
                 return TRUE;
-            } else if($this->id!=$result[0]['id']) {
+            } else if($this->menu_id != $result[0]['id']) {
                 Error::set(MENU_ALREADY_EXIST);
                 return FALSE;
             }
@@ -167,26 +167,20 @@ class Menu {
         }
     }
 
-    public function isImageExist($image) {
-
+    public function isImageExist() {
         $db = new Db();
-        $image = $db->quote($this->image);
-        $query = "SELECT image FROM " . $this->tableName() . " WHERE image=$image";
+        $id = $db->quote($this->menu_id);
+        $query = "SELECT image FROM " . $this->tableName() . " WHERE id=$id";
         $result = $db->select($query);
+      
         if(isset($result[0])&& count($result[0])>0){
-            if($result[0]['id']== $this->id){
-                return TRUE;
-            }elseif ($this->id!=$result[0]['id']) {
-                Error::set(IMAGE_ALREADY_EXIST); 
-                return FALSE;
+            if(strlen($result[0]["image"]) > 0){
+                unlink(WEB_FOLDER.MENU_IMG_FOLDER."/".$result[0]["image"]);
+                
             }
-        }  else {
-            return TRUE;
-        }
-            
-        }
-    
-
+        } 
+        return true;
+    }
 }
 
 ?>

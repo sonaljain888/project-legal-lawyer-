@@ -16,11 +16,6 @@ if (strlen(Request::post("submit"))) {
     {
         General::redirectUrl("city.php");
     }
- else {
-      $error = "City Name alreday exist !";
-        
-    }
-    
 }
 ?>
 <?php include 'header.php'; ?>
@@ -50,30 +45,7 @@ if (strlen(Request::post("submit"))) {
                         </div>
                         <div class="box-content">
                             <div class="control-group">
-                                <form action="#" method="POST">
-                                    <table style="margin-left: 20%;" width="100%" >
-
-                                        <tr>
-                                            <td>
-                                                <label class="control-label" for="selectError">State</label>
-                                            </td>
-                                            <td>
-                                                <div class="input-group" style="width: 50%">
-                                                    <span class="input-group-addon"></span>
-                                                    <select required="" name="state_id" class="form-control">
-                                                        <option value="">--Select State--</option>
-                                                        <?php
-                                                        $countryObj = new State();
-                                                        $rows = $countryObj->getAll();
-                                                        foreach ($rows as $row) {
-                                                            ?>
-                                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['name']; ?> </option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php
+                                <?php
                                     $id = Request::get("id");
                                     if (is_numeric($id) && $id > 0) {
                                         $cityObj = new City();
@@ -88,6 +60,34 @@ if (strlen(Request::post("submit"))) {
                                         }
                                     }
                                     ?>
+                                <form action="#" method="POST">
+                                    <table style="margin-left: 20%;" width="100%" >
+
+                                        <tr>
+                                            <td>
+                                                <label class="control-label" for="selectError">State</label>
+                                            </td>
+                                            <td>
+                                                <div class="input-group" style="width: 50%">
+                                                    <span class="input-group-addon"></span>
+                                                    <select required="" name="state_id" class="form-control">
+                                                        <option value="">--Select State--</option>
+                                                        <?php
+                                                        $stateObj = new State();
+                                                        $state_rows = $stateObj->getAll();
+                                                        foreach ($state_rows as $row) {
+                                                            $selected = "";
+                                                            if($row['id'] == $state_id){
+                                                                $selected = 'selected="selected"';
+                                                            }
+                                                            ?>
+                                                            <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['name']; ?> </option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
                                         <tr>
                                             <td><label class="control-label" for="selectError">City</label></td>
                                             <td><div class="input-group" style="width: 50%">
@@ -119,10 +119,10 @@ if (strlen(Request::post("submit"))) {
                     </div>
                 </div>
             </div>
-        </div><!--/#content.col-md-0-->
+        </div>
     </div>
     <hr>
-</div><!--/.fluid-container-->
+</div>
 <?php include 'footer.php'; ?>
 
 

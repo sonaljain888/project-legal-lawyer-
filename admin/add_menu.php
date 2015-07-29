@@ -1,7 +1,7 @@
 <?php include 'admin-config.php'; ?>
 <?php
-$menu_id = $category_id = $menu_name = $parent_id= $results = $url =  $access_type = $menu_order = $menu_status = $error = "";
-if(strlen(Request::post("submit"))){
+$menu_id = $category_id = $menu_name = $parent_id = $results = $url = $access_type = $menu_order = $menu_status = $error = "";
+if (strlen(Request::post("submit"))) {
     $menu_id = Request::post("menu_id");
     $menu_name = Request::post("menu_name");
     $category_id = Request::post("category_id");
@@ -10,6 +10,7 @@ if(strlen(Request::post("submit"))){
     $access_type = Request::post("access_type");
     $menu_order = Request::post("menu_order");
     $menu_status = Validation::getStautsTinyVal(Request::post("active"));
+
     $menuObj = new Menu();
     $menuObj->set("menu_id", $menu_id);
     $menuObj->set("menu_name", $menu_name);
@@ -19,22 +20,21 @@ if(strlen(Request::post("submit"))){
     $menuObj->set("access_type", $access_type);
     $menuObj->set("menu_order", $menu_order);
     $menuObj->set("menu_status", $menu_status);
-    if($menuObj->isImageExist()){
     if ($menuObj->isMenuExist()) {
         $upload = Upload::factory(MENU_IMG_FOLDER . "/");
-        $upload->file($_FILES["menu-image"]); 
+        $upload->file($_FILES["menu-image"]);
         $results = $upload->upload();
-       $menuObj->set("image", $results["filename"]);
-       
+        $menuObj->set("image", $results["filename"]);
+        $menuObj->isImageExist();
         if ($menuObj->save()) {
             General::redirectUrl("menu.php");
         } else {
             $error = "Menu Name alreday exist !";
-        }    
-}
-}
+        }
+    }
 }
 ?>
+
 <?php include 'header.php'; ?>
 <?php include 'sitebar.php'; ?>
 <div class="ch-container">
@@ -53,6 +53,7 @@ if(strlen(Request::post("submit"))){
                     </li>
                 </ul>
             </div>
+
             <div class="row" >
                 <div class="box col-md-12" >
                     <div class="box-inner" >
@@ -81,7 +82,6 @@ if(strlen(Request::post("submit"))){
                             }
                             ?>
                             <form action="" method="post" enctype="multipart/form-data">
-                                
                                 <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">                       
                                     <tr><td><label class="control-label" for="selectError">Menu Name</label></td>
                                         <td>
@@ -104,11 +104,11 @@ if(strlen(Request::post("submit"))){
                                                     $rows = $menuObj->getAll();
                                                     foreach ($rows as $row) {
                                                         $selected = "";
-                                                        if($row['id'] == $category_id){
+                                                        if ($row['id'] == $category_id) {
                                                             $selected = 'selected="selected"';
                                                         }
                                                         ?>
-                                                        <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['name']; ?> </option>
+                                                        <option value="<?php echo $row['id'] ?>" <?= $selected ?>><?php echo $row['name']; ?> </option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -136,7 +136,7 @@ if(strlen(Request::post("submit"))){
                                     </tr>
                                     <tr>
                                         <td><label for="exampleInputFile">image Upload</label></td>
-                                        <td><input type="file" name="menu-image" value="<?php echo MENU_IMG_URL."/" . $results;  ?>" >
+                                        <td><input type="file" name="menu-image" id="exampleInputFile" required="">
                                         </td>
                                     </tr>
                                     <tr>
@@ -152,11 +152,11 @@ if(strlen(Request::post("submit"))){
                                                     $rows = $menuObj->getAll();
                                                     foreach ($rows as $row) {
                                                         $selected = "";
-                                                        if($row['id'] == $access_type){
+                                                        if ($row['id'] == $access_type) {
                                                             $selected = 'selected="selected"';
                                                         }
                                                         ?>
-                                                        <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['type']; ?> </option>
+                                                        <option value="<?php echo $row['id'] ?>" <?= $selected ?>><?php echo $row['type']; ?> </option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -184,11 +184,13 @@ if(strlen(Request::post("submit"))){
                                     </tr>
                                     <tr>
                                         <td style="text-align: center" colspan="2">
-                                            <input type="hidden" name="menu_id" value="<?php if ($menu_id) {
+                                            <input type="hidden" name="menu_id" value="<?php
+                                            if ($menu_id) {
                                                 echo $menu_id;
                                             } else {
                                                 echo "0";
-                                            } ?>" />
+                                            }
+                                                    ?>" />
                                             <button type="submit" name="submit" value="submit"  class="btn btn-default">Submit</button>
                                             &nbsp;&nbsp;&nbsp;
                                             <a href="menu.php"><button type="button" class="btn btn-default">cancel</button></a>

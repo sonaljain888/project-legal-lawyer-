@@ -40,29 +40,7 @@ if(strlen(Request::post("submit"))){
                             <h2><i class="glyphicon glyphicon-edit"></i> Form State</h2>
                         </div>
                         <div class="box-content">
-
-                            <form action="#" method="POST">
-                                <table style="margin-left: 20%;" width="100%" >
-                                    <tr>
-                                        <td><label class="control-label" for="selectError">Country</label></td>
-                                        <td>
-                                            <div class="input-group" style="width: 50%">
-                                                <span class="input-group-addon"></span>
-
-                                                <select required="" name="country_id"  class="form-control">
-                                                    <option value="">--Select Country--</option>
-                                                    <?php
-                                                    $countryObj = new Country();
-                                                    $rows = $countryObj->getAll();
-                                                    foreach ($rows as $row) {
-                                                        ?>
-                                                        <option value="<?php echo $row['id'] ?>"><?php echo $row['name']; ?> </option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php
+                            <?php
                                     $id = Request::get("id");
                                     if (is_numeric($id) && $id > 0) {
                                         $stateObj = new State();
@@ -77,6 +55,32 @@ if(strlen(Request::post("submit"))){
                                         }
                                     }
                                     ?>
+                            <form action="#" method="POST">
+                                <table style="margin-left: 20%;" width="100%" >
+                                    <tr>
+                                        <td><label class="control-label" for="selectError">Country</label></td>
+                                        <td>
+                                            <div class="input-group" style="width: 50%">
+                                                <span class="input-group-addon"></span>
+
+                                                <select required="" name="country_id"  class="form-control">
+                                                    <option value="">--Select Country--</option>
+                                                    <?php
+                                                    $countryObj = new Country();
+                                                    $rows = $countryObj->getAll();
+                                                    foreach ($rows as $row) {
+                                                        $selected = "";
+                                                        if($row['id'] == $country_id){
+                                                            $selected = 'selected="selected"';
+                                                        }
+                                                        ?>
+                                                        <option value="<?php echo $row['id'] ?>" <?=$selected?>><?php echo $row['name']; ?> </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
                                     <tr>
                                         <td><label class="control-label" for="selectError">State</label></td>
                                         <td><div class="input-group" style="width: 50%">
