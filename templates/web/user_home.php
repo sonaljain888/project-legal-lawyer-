@@ -11,11 +11,12 @@
                             <?php
                         }
                         ?>
-                        <div class="col-xs-3" >
+                        <div class="col-xs-3"  >
                             <div class="lawyer-image-wrapper">
                                 <div class="single-lawyer">
                                     <div class="lawyerinfo text-center">
-                                        <img  alt="<?= $data["name"] ?>" rel="<?= $data["name"] ?> logo" name="<?= $data["name"] ?>" src="">
+                                        <img  alt="<?= $data["name"] ?>" rel="<?= $data["name"] ?> logo" name="<?= $data["name"] ?>"
+                                              src="<?php echo MENU_IMG_URL . "/" . $data['image']; ?>" width="80px"height="75px"></br>
                                         <a class="btn btn-default"  href="<?= $data["url"] ?>"><?= $data["name"] ?> </a>
                                     </div>
 

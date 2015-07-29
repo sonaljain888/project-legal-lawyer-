@@ -47,7 +47,7 @@
                                 <td class="center"><?php echo $row['id'];?></td>
                                 <td><?php if($row['image']==''){     
                                 }else{ ?>
-                                    <img src="<?php echo MENU_IMG_URL."/" . $row['image'];  ?>" name="" rel=""/>
+                                    <img src="<?php echo MENU_IMG_URL."/" . $row['image'];  ?>" name="" rel="" width="80px"height="75px"/>
                                <?php } ?>
                                     </td>
                                 <td class="center"><?php echo $row['name'];?></td>

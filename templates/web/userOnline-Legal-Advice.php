@@ -1,3 +1,4 @@
+
 <section>
     <div class="container">
         <div class="row">
@@ -10,8 +11,10 @@
                         </ul>
                     </div>
                     <form style="border: 1px black;" action="" method="POST">
+                        <input type="hidden" name="action" value="question">
+                        <input type="hidden" name="type" value="user">
                         <table height="650px;">
-                            <tr><td><input type="text" name="reg_id" value="" id="second_td" style="display:none;"/></td></tr>
+                            <tr><td><input type="text" name="question" value="" id="second_td" style="display:none;"/></td></tr>
                             <tr>
                                 <td id="first_td">Describe your Question/Problem (Min 60 characters) : </td>
                                 <td><textarea id="teatarea_td" name="question" placeholder="Describe your Question/Problem (Min 60 characters)"></textarea></td>
@@ -32,15 +35,18 @@
                                 <td id="first_td"> City : </td>
                                 <td> <select required="" name="city_id" class="form-control">
                                         <option value="">--Select City--</option>
-                                        <option value=""></option>
+                                        <?php
+                                            $city = City::getName();
+                                           if(count($city)){
+                                            foreach ($city as $key => $row) {
+                                             ?>
+                                           <option value="<?= $row['id'] ?>"><?= $row['name'] ?> </option>
+                                           <?php }} ?>
                                     </select></td>
                             </tr>
-                            <tr hidden="">
-                                <td id="first_td"> Status : </td>
-                                <td><input type="text" name="isactive" value="" id="second_td" placeholder=""/></td>
-                            </tr>
                             <tr>
-                                <td colspan="4" align="center"><input type="submit" name="submit" value="Submit" style="width:150px;background: red;height: 45px;color: white" />&nbsp;&nbsp;&nbsp;<a href="question.php"><input type="button" value="Cancel" style="width:150px;background: gray;height: 45px;color: white" /></a></td>
+                                <td colspan="4" align="center"><input type="submit" name="submit" value="Submit" style="width:150px;background: red;height: 45px;color: white" />&nbsp;&nbsp;&nbsp;
+                                    <a href="question.php"><input type="button" value="Cancel" style="width:150px;background: gray;height: 45px;color: white" /></a></td>
                             </tr>
                         </table>
                     </form>

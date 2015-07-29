@@ -19,23 +19,22 @@ if(strlen(Request::post("submit"))){
     $menuObj->set("access_type", $access_type);
     $menuObj->set("menu_order", $menu_order);
     $menuObj->set("menu_status", $menu_status);
+    if($menuObj->isImageExist()){
     if ($menuObj->isMenuExist()) {
         $upload = Upload::factory(MENU_IMG_FOLDER . "/");
         $upload->file($_FILES["menu-image"]); 
         $results = $upload->upload();
        $menuObj->set("image", $results["filename"]);
-       if($menuObj->isImageExist()){
+       
         if ($menuObj->save()) {
             General::redirectUrl("menu.php");
         } else {
             $error = "Menu Name alreday exist !";
-        }
-    
+        }    
 }
 }
 }
 ?>
-
 <?php include 'header.php'; ?>
 <?php include 'sitebar.php'; ?>
 <div class="ch-container">
@@ -54,7 +53,6 @@ if(strlen(Request::post("submit"))){
                     </li>
                 </ul>
             </div>
-
             <div class="row" >
                 <div class="box col-md-12" >
                     <div class="box-inner" >
@@ -83,6 +81,7 @@ if(strlen(Request::post("submit"))){
                             }
                             ?>
                             <form action="" method="post" enctype="multipart/form-data">
+                                
                                 <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">                       
                                     <tr><td><label class="control-label" for="selectError">Menu Name</label></td>
                                         <td>
@@ -137,7 +136,7 @@ if(strlen(Request::post("submit"))){
                                     </tr>
                                     <tr>
                                         <td><label for="exampleInputFile">image Upload</label></td>
-                                        <td><input type="file" name="menu-image" id="exampleInputFile" required="">
+                                        <td><input type="file" name="menu-image" value="<?php echo MENU_IMG_URL."/" . $results;  ?>" >
                                         </td>
                                     </tr>
                                     <tr>

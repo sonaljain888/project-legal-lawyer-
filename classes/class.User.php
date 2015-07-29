@@ -75,12 +75,9 @@ class User {
 
     function registration() {
         if (isset($this->data['request']) && isset($this->data["request"]['submit'])) {
-            $db = new Db();
-            $db->connect();
-//            if ($this->checkUserEmail($this->data['request']['email'])) {
-//                if ($this->checkpassword($this->data['request']['password'])) {
-            if($this->isEmailExist($email)) {  
-                   if($this->isMobileExist($mobile)) {      
+            if($this->isEmailExist($this->data['request']["email"])) {
+                    if($this->isMobileExist($this->data['request']["mobile"])) { 
+            $db = new Db();    
                     $name = $db->quote($this->data['request']["name"]);
                     $email = $db->quote($this->data['request']["email"]);
                     $pass = $db->quote($this->data['request']["password"]);
@@ -97,25 +94,25 @@ class User {
                          Error::set(INVALID_EMAIL && INVALID_PASSWORD);
                     }else{
                     $sql = "INSERT INTO " . $this->tableName() . " (Name,EmailId,Password,Website,Mobile,Address,City,Location,Education,
-                Experiance,Specialization,PracticingCourt) 
+                Experiance,Specialization,PracticingCourt,active) 
                 values  ($name,$email,$pass,$website,$mobile,$add,$city,$location,$education,$experience,
-                $specialization,$pra_court)";                  
+                $specialization,$pra_court,1)";                  
                     if ($db->query($sql)) {
                         return TRUE;
                     }
                   }
                 }
             }
-        }
-    }
-    
+       }
+  }
+   
 public function isEmailExist($email) {
 
         $db = new Db();       
 $email = $db->quote($email);
 $query = "SELECT * FROM " . $this->tableName() . " WHERE EmailId=$email";
         $result = $db->select($query);
-        if(!count($result)){
+        if(count($result)){
                 Error::set(EMAIL_ALREADY_EXIST);
                 return FALSE;
             } else {
@@ -129,13 +126,12 @@ public function isMobileExist($mobile) {
 $mobile = $db->quote($mobile);
 $query = "SELECT * FROM " . $this->tableName() . " WHERE Mobile=$mobile";
         $result = $db->select($query);
-        if(!count($result)){
+        if(count($result)){
                 Error::set(MOBILE_NO._ALREADY_EXIST);
                 return FALSE;
             } else {
             return TRUE;
-        }
-            
+        }          
         }
         
     function profile($user_id = 0) {
@@ -156,8 +152,6 @@ $query = "SELECT * FROM " . $this->tableName() . " WHERE Mobile=$mobile";
     function userupdate() {
         if (isset($_POST['submit'])) {
             $db = new Db();
-            $db->connect();
-            $sid = $_SESSION['id'];
             $name = $db->quote($_REQUEST["name"]);
             $email = $db->quote($_REQUEST["email"]);
             $password = $db->quote($_REQUEST["password"]);

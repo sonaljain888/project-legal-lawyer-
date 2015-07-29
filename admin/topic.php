@@ -1,3 +1,4 @@
+<?php include 'admin-config.php'; ?>
 <?php include 'header.php';?>
 <?php include 'sitebar.php';?>      
         <div id="content" class="col-lg-10 col-sm-10">
@@ -23,7 +24,7 @@
         
     </div>
     <div class="box-content">
-        <a class="btn btn-info" href="topic-add.php">
+        <a class="btn btn-info" href="add-topic.php">
                 <i class="glyphicon glyphicon-edit icon-white"></i>
                 Add Data
             </a><br/><br/>
@@ -34,52 +35,45 @@
         <th>Topic </th>
        
         <th>Status</th>
+        
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-      
+        <?php
+                            $topicObj = new Topic();
+                            $rows = $topicObj->getAll();
+                            foreach ($rows as $row) {
+                                ?> 
     <tr>
-        <td></td>
-        <td class="center"></td>
-        <td class="center">
-            <span class="label-success label label-default"></span>
-        </td>
+        <td><?php echo $row['topic_id']; ?></td>
+        <td class="center"><?php echo $row['topic']; ?></td>
+                <td class="center">
+                                        <span class="label-success label label-default"><?php
+                            if ($row['active'] == 1) {
+                                echo "Active";
+                            } else {
+                                echo "Not Active";
+                            }
+                                ?></span>
+                                    </td>
         <td class="center">
 
-            <a class="btn btn-info" href="">
+            <a class="btn btn-info" href="add-topic.php?topic_id=<?= $row['topic_id'] ?>">
                 <i class="glyphicon glyphicon-edit icon-white"></i>
                 Edit
             </a>
-            <a class="btn btn-danger" href="" onClick="return confirm('Are you sure want to delete record')">
-                <i class="glyphicon glyphicon-trash icon-white"></i>
-                Delete
-            </a>
         </td>
     </tr>
-  
+     <?php } ?>
     </tbody>
     </table>
     </div>
     </div>
     </div>
     <!--/span-->
-
-    </div><!--/row-->
-
-    
-   
-
-    
-    
-    
-
-    <!-- content ends -->
+    </div><!--/row-->   <!-- content ends -->
     </div><!--/#content.col-md-0-->
 </div><!--/fluid-row-->
-
-   
-
 </div><!--/.fluid-container-->
-
 <?php include 'footer.php';?>

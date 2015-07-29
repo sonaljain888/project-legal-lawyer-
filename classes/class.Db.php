@@ -74,12 +74,8 @@ class Db {
      * @return string Database error message
      */
     public function error() {
-        $conn = $this->connect();
-        if(count($conn->errno)){
-            return $conn->error;
-        }else{
-            return false;
-        }
+        $connection = $this->connect();
+        return $connection->error;
     }
 
     /**
@@ -97,5 +93,5 @@ class Db {
         $conn = $this->connect();
         return $conn->affected_rows;
     }
-    
+
 }

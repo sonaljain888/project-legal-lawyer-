@@ -1,7 +1,5 @@
 <?php
-
 class General {
-
     private $url = null;
 
     public static function getPageURL($fullUrl = FALSE) {
@@ -17,7 +15,6 @@ class General {
         }
         return trim($_SERVER["REQUEST_URI"]);
     }
-
     public function setTempalte() {
         $notFoundPage = false;
         $id = 0;

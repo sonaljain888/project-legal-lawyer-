@@ -14,6 +14,7 @@ include 'header.php';
     <?php include USER_TEMPLATE_FOLDER."/".$file_name; ?>
 </div>
 
+
 <?php include 'footer.php';
 
 ?>

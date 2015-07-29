@@ -19,7 +19,7 @@
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="<?=USER_IMG_URL?>/home/girl1.jpg" class="girl img-responsive" alt="" />
+                                <img src="<?= USER_IMG_URL ?>/home/girl1.jpg" class="girl img-responsive" alt="" />
                             </div>
                         </div>
                         <div class="item">
@@ -30,8 +30,8 @@
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="<?=USER_IMG_URL?>/home/girl2.jpg" class="girl img-responsive" alt="" />
-                                <!--<img src="<?=USER_IMG_URL?>/home/pricing.png"  class="pricing" alt="" />-->
+                                <img src="<?= USER_IMG_URL ?>/home/girl2.jpg" class="girl img-responsive" alt="" />
+                                <!--<img src="<?= USER_IMG_URL ?>/home/pricing.png"  class="pricing" alt="" />-->
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="<?=USER_IMG_URL?>/home/girl3.jpg" class="girl img-responsive" alt="" />
+                                <img src="<?= USER_IMG_URL ?>/home/girl3.jpg" class="girl img-responsive" alt="" />
                             </div>
                         </div>
 
@@ -72,74 +72,69 @@
                 <div class="category-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="index" >For User</a></li>
+                            <li class="active"><a href="">For User</a></li>
                             <li><a href="#blazers" data-toggle="tab">For Lawyer</a></li>
                             <li><a href="#sunglass" data-toggle="tab">Top Lawyers</a></li>
                         </ul>
                     </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in"   >
+                            <?php
+                            $userMenus = Menu::getMenus(Validation::getAccessType(0), "Top User");
+                            if (count($userMenus)) {
+                                foreach ($userMenus as $key => $data) {
+                                    ?>
+                                    <div class="col-sm-3">
+                                        <div class="lawyer-image-wrapper">
+                                            <div class="single-lawyer">
+                                                <div class="lawyerinfo text-center">
+                                                    <img  alt="<?= $data["name"] ?>" rel="<?= $data["name"] ?> logo" name="<?= $data["name"] ?>" 
+                                                          src="<?php echo MENU_IMG_URL . "/" . $data['image']; ?>" width="80px"height="75px"><br/>
+                                                    <a class="btn btn-default"  href="<?= $data["url"] ?>"><?= $data["name"] ?> </a>
+                                                </div>
 
-                    <div class="tab-pane fade" id="sunglass" >
-                        <div class="col-sm-3">
-                            <div class="lawyer-image-wrapper">
-                                <div class="single-lawyers">
-                                    <div class="lawyerinfo text-center">
-                                        <img src="<?=USER_IMG_URL?>/home/gallery3.jpg" alt="" />
-                                        <h2>Title</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="profile_details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
+                                            </div>
+                                        </div>
                                     </div>
+                                <?php }
+                            } ?>
 
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="lawyer-image-wrapper">
-                                <div class="single-lawyers">
-                                    <div class="lawyerinfo text-center">
-                                        <img src="<?=USER_IMG_URL?>/home/gallery4.jpg" alt="" />
-                                        <h2>Title</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="profile_details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
-                                    </div>
 
-                                </div>
-                            </div>
+                        <div class="tab-pane fade" id="blazers"  >
+                            <?php
+                            $lawyerMenus = Menu::getMenus(Validation::getAccessType(0), "Top Lawyer");
+                            if (count($lawyerMenus)) {
+                                foreach ($lawyerMenus as $key => $data) {
+                                    ?>
+                                    <div class="col-sm-3">
+                                        <div class="lawyer-image-wrapper">
+                                            <div class="single-lawyer">
+                                                <div class="lawyerinfo text-center">
+                                                    <img  alt="<?= $data["name"] ?>" rel="<?= $data["name"] ?> logo" name="<?= $data["name"] ?>" 
+                                                          src="<?php echo MENU_IMG_URL . "/" . $data['image']; ?>" width="80px"height="75px""><br/>
+                                                    <a class="btn btn-default"  href="<?= $data["url"] ?>"><?= $data["name"] ?> </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+    <?php }
+} ?>
+
                         </div>
-                        <div class="col-sm-3">
-                            <div class="lawyer-image-wrapper">
-                                <div class="single-lawyers">
-                                    <div class="lawyerinfo text-center">
-                                        <img src="<?=USER_IMG_URL?>/home/gallery1.jpg" alt="" />
-                                        <h2>Title</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="profile_details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="lawyer-image-wrapper">
-                                <div class="single-lawyers">
-                                    <div class="lawyerinfo text-center">
-                                        <img src="<?=USER_IMG_URL?>/home/gallery2.jpg" alt="" />
-                                        <h2>Title</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                        <a href="profile_details" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
-                                    </div>
-
-                                </div>
-                            </div>
+                        <div class="tab-pane fade" id="sunglass" >
+                            hi
                         </div>
                     </div>
-                </div>
-            </div><!--/category-tab-->
+                </div><!--/category-tab-->
 
-            <!--/recommended_items-->
+                <!--/recommended_items-->
 
+            </div>
         </div>
     </div>
-</div>
 </section>
 <?php include 'footer.php'; ?>
 <!--/Footer-->
