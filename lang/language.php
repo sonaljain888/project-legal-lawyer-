@@ -19,5 +19,5 @@ define("MENU_ALREADY_EXIST", "Menu Already Exist");
 define("MENUNAME_AND_ACCESSTYPE_ALREADY_EXIST", "Menu name and Access Type Already Exist");
 define("IMAGE_ALREADY_EXIST", "Image exuts");
 define("EMAIL_ALREADY_EXIST", "Email id already exist");
-define("MOBILE_NO._ALREADY_EXIST", "Mobile no. already exist ");
+define("MOBILE_NO_ALREADY_EXIST", "Mobile no. already exist ");
 

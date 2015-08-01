@@ -4,17 +4,7 @@
             <?php include 'sitebar.php'; ?>
             <div class="col-sm-9 padding-right">
                 <div class="category-tab" ><!--category-tab-->
-                    <div class="col-sm-12">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="">My Home</a></li>
-                            <li><a href="">My Question</a></li>
-                            <li><a href="">My Lawyer</a></li>
-                            <li><a href="">My Blogs</a></li>
-                            <li><a href="">My Profile</a></li>
-                            <li><a href="#">Upcoming 1</a></li>
-                            <li><a href="#">Upcoming 2</a></li>
-                        </ul>
-                    </div>
+                    
                     <div class="col-sm-9 padding-right"style="margin-top: 1%;">
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs" style="background: #40403E;">
@@ -25,14 +15,7 @@
                         </div>
                         <form id="form_background" action="" method="POST">
                             <table height="680" align="center" width="80%">
-                                <tr>
-                                    <td id="label">category:</td>
-                                    <td><select id="text" name="lawyer_category" required="">
-                                            <option>Select</option>
-                                            <option>firm</option>
-                                            <option>Judge</option>
-                                        </select></td>
-                                </tr>
+                                
                                 <tr>
                                     <td id="label">Name:</td>
                                     <td><input id="text" type="text" name="name" placeholder="Name"required=""/></td>

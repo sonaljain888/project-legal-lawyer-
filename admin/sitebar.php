@@ -38,8 +38,8 @@
                         <li class="accordion">
                             <a href="#"><i class="glyphicon glyphicon-plus"></i><span> Manage Registration</span></a>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="lawyer_reg.php"><span> Lawyer</span></a></li>
-                                <li><a href="user_reg.php"><span> User</span></a></li>
+<!--                                <li><a href="lawyer_reg.php"><span> Lawyer</span></a></li>-->
+                                <li><a href="users.php"><span> User</span></a></li>
                            </ul>
                         </li>
                         <li class="accordion">
@@ -52,6 +52,8 @@
                         <li><a class="ajax-link" href="topic.php"><i class="glyphicon glyphicon-font"></i><span> Topic</span></a>
                         </li>
                      <li><a class="ajax-link" href="post-law-legal-jobs.php"><i class="glyphicon glyphicon-align-justify"></i><span> Jobs</span></a></li>
+                      <li><a class="ajax-link" href="legal_resume.php"><i class="glyphicon glyphicon-align-justify"></i><span> Legal Resume</span></a></li>
+                       <li><a class="ajax-link" href="lpo.php"><i class="glyphicon glyphicon-align-justify"></i><span> LPO</span></a></li>
                      <li><a class="ajax-link" href="description.php"><i class="glyphicon glyphicon-calendar"></i><span> Add/Edit Pages</span></a>
                         </li>
                         <li><a class="ajax-link" href="question.php"><i class="glyphicon glyphicon-calendar"></i><span> Question & Answer</span></a>
@@ -71,6 +73,13 @@
                                 <li><a href="documentType.php"><span> Type of Document</span></a></li>
                                 <li><a href="documentCategory.php"><span>Document Category</span></a></li>
                                 <li><a href="document.php"><span> Documents</span></a></li>
+                           </ul>
+                        </li>
+                          <li class="accordion">
+                            <a href="#"><i class="glyphicon glyphicon-plus"></i><span> Manage Company</span></a>
+                            <ul class="nav nav-pills nav-stacked ">
+                                <li><a href="company.php"><span>Company</span></a></li>
+                               
                            </ul>
                         </li>
                         <li><a class="ajax-link" href="bankdetails.php"><i class="glyphicon glyphicon-calendar"></i><span> Bank Details</span></a>

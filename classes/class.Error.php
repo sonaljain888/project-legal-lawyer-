@@ -25,7 +25,7 @@ class Error {
         }
     }
 
-    public static function get() {
+    public static function get($key) {
         return Session::read($key);
     }
 

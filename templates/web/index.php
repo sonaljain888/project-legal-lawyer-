@@ -72,17 +72,24 @@
                 <div class="category-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="">For User</a></li>
-                            <li><a href="#blazers" data-toggle="tab">For Lawyer</a></li>
-                            <li><a href="#sunglass" data-toggle="tab">Top Lawyers</a></li>
+                            <li ><a href="#for-user" data-toggle="tab">For User</a></li>
+                            <li><a href="#for-lawyer" data-toggle="tab">For Lawyer</a></li>
+                            <li><a href="#top-lawyers" data-toggle="tab">Top Lawyers</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane fade active in"   >
+                        <div class="tab-pane fade active in" id="for-user"  >
                             <?php
                             $userMenus = Menu::getMenus(Validation::getAccessType(0), "Top User");
+                            $prefixurl = "";
                             if (count($userMenus)) {
                                 foreach ($userMenus as $key => $data) {
+                                    if(strlen($prefixurl) == 0){
+                                        $accessObj = new AccessType();
+                                        $accessObj->set("access_id", $data['access_type']);
+                                        $access_url = $accessObj->getName();
+                                        $prefixurl = SERVER_URL."/";
+                                    }
                                     ?>
                                     <div class="col-sm-3">
                                         <div class="lawyer-image-wrapper">
@@ -98,10 +105,9 @@
                                     </div>
                                 <?php }
                             } ?>
-
                         </div>
 
-                        <div class="tab-pane fade" id="blazers"  >
+                        <div class="tab-pane fade" id="for-lawyer"  >
                             <?php
                             $lawyerMenus = Menu::getMenus(Validation::getAccessType(0), "Top Lawyer");
                             if (count($lawyerMenus)) {
@@ -112,7 +118,7 @@
                                             <div class="single-lawyer">
                                                 <div class="lawyerinfo text-center">
                                                     <img  alt="<?= $data["name"] ?>" rel="<?= $data["name"] ?> logo" name="<?= $data["name"] ?>" 
-                                                          src="<?php echo MENU_IMG_URL . "/" . $data['image']; ?>" width="80px"height="75px""><br/>
+                                                          src="<?php echo MENU_IMG_URL . "/" . $data['image']; ?>" width="80px"height="75px"><br/>
                                                     <a class="btn btn-default"  href="<?= $data["url"] ?>"><?= $data["name"] ?> </a>
                                                 </div>
 
@@ -124,7 +130,7 @@
 
                         </div>
 
-                        <div class="tab-pane fade" id="sunglass" >
+                        <div class="tab-pane fade" id="top-lawyers" >
                             hi
                         </div>
                     </div>

@@ -50,9 +50,9 @@ class City extends State {
                 ON DUPLICATE KEY UPDATE    
                 name=$name, state_id=$state_id, active=$active";
             if($db->query($query)){
-                if($db->affectedRows()){
                     return true;
-                }
+            }else{
+                Error::set($db->error());
             }
         }
         return false;

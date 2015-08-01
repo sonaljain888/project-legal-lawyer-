@@ -1,5 +1,7 @@
 <?php
+
 class General {
+
     private $url = null;
 
     public static function getPageURL($fullUrl = FALSE) {
@@ -15,6 +17,7 @@ class General {
         }
         return trim($_SERVER["REQUEST_URI"]);
     }
+
     public function setTempalte() {
         $notFoundPage = false;
         $id = 0;
@@ -46,10 +49,13 @@ class General {
                 switch ($urlArray[0]) {
                     case "login" :
                         if (Session::isLogged()) {
-                            $pageType = $page->getPageTypeUrl(Session::read("access_type"));
+                            $page->set("access_id", Session::read("access_type"));
+                            $pageType = $page->getPageTypeUrl();
                             $url = SERVER_URL . "/$pageType/home";
                             General::redirectUrl($url);
                         }
+                        break;
+                    default :
                         break;
                 }
             } elseif (isset($urlArray[1]) && !is_numeric($urlArray[1]) && count($urlArray)==2 && $urlArray[1] == "logout" ) {  //Logout 
@@ -59,7 +65,8 @@ class General {
                 $url = SERVER_URL . "/login";
                 General::redirectUrl($url);
             } elseif (($pageDetails[0]["access_type"] != Session::read("access_type") && Session::isLogged() && !is_numeric($urlArray[2]))) {
-                $pageType = $page->getPageTypeUrl(Session::read("access_type"));
+                $page->set("access_id", Session::read("access_type"));
+                $pageType = $page->getPageTypeUrl();
                 $url = SERVER_URL . "/$pageType/home";
                 General::redirectUrl($url);
             }
@@ -94,19 +101,22 @@ class General {
     }
 
     public static function getPageTemplate($url) {
-        $request = Request::getAllRequest();
-        if (count($request)) {
-            switch ($request['type']) {
+        if (count(Request::getAllRequest())) {
+            switch (Request::post("type")) {
                 case 'user':
                     $user = new User();
-                    $user->set("request", $request);
-                    $result = $user->$request['action']();
+                    $user->set("email_id", Request::post("email"));
+                    $user->set("password", Request::post("password"));
+                    $action = Request::post("action");
+                    $result = $user->$action();
                     $page = new Page();
-                    if ($result && $request['action'] == 'login') {
-                        $pageType = $page->getPageTypeUrl(Session::read("access_type"));
+                    if ($result && $action == 'login') {
+                        $page->set("access_id", Session::read("access_type"));
+                        $pageType = $page->getPageTypeUrl();
                         $r_url = SERVER_URL . "/$pageType/home";
-                    } elseif ($result && $request['action'] == 'registration') {
-                        $pageType = $page->getPageTypeUrl(Session::read("access_type"));
+                    } elseif ($result && $action == 'registration') {
+                        $page->set("access_id", Session::read("access_type"));
+                        $pageType = $page->getPageTypeUrl();
                         $r_url = SERVER_URL . "/$pageType/home";
                     } else {
                         $r_url = SERVER_URL . "/login";

@@ -3,21 +3,21 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="<?= $pageDetails[0]['description'] ?>">
-        <meta name="author" content="<?= $pageDetails[0]['author'] ?>">
-        <meta name="keywords" content="<?= $pageDetails[0]['Keyword'] ?>">
-        <title><?= $pageDetails[0]['title'] ?> | <?= SITE_NAME ?></title>
+        <meta name="description" content="<?=$pageDetails[0]['description']?>">
+        <meta name="author" content="<?=$pageDetails[0]['author']?>">
+        <meta name="keywords" content="<?=$pageDetails[0]['Keyword']?>">
+        <title><?=$pageDetails[0]['title']?> | <?=SITE_NAME?></title>
         <?php include 'user_csslinks.php'; ?>
         <?php include 'user_jslinks.php'; ?>
         <!--[if lt IE 9]>
-        <script src="<?= USER_JS_URL ?>/js/html5shiv.js"></script>
-        <script src="<?= USER_JS_URL ?>/js/respond.min.js"></script>
+        <script src="<?=USER_JS_URL?>/js/html5shiv.js"></script>
+        <script src="<?=USER_JS_URL?>/js/respond.min.js"></script>
         <![endif]-->       
-        <link rel="shortcut icon" href="<?= USER_IMG_URL ?>/ico/favicon.ico">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?= USER_IMG_URL ?>/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?= USER_IMG_URL ?>/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?= USER_IMG_URL ?>/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="<?= USER_IMG_URL ?>/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="<?=USER_IMG_URL?>/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?=USER_IMG_URL?>/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?=USER_IMG_URL?>/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=USER_IMG_URL?>/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="<?=USER_IMG_URL?>/ico/apple-touch-icon-57-precomposed.png">
     </head>
     <body>
         <header id="header"><!--header-->
@@ -116,32 +116,33 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo pull-left">
-                                <a href="<?= SERVER_URL ?>" ><span ><font style="font-size: 48px; font-weight: bold;color: #FE980F;">L</font><span style="font-size: 32px;">egal Lawyer</span> </span></a>
+                                <a href="<?=SERVER_URL?>" ><span ><font style="font-size: 48px; font-weight: bold;color: #FE980F;">L</font><span style="font-size: 32px;">egal Lawyer</span> </span></a>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
                                 <?php
-                                if (Session::read("access_type")) {
-                                    $access_id = Session::read("access_type");
-                                } else {
+                                if(Session::read("access_type")){
+                                   $access_id = Session::read("access_type"); 
+                                }else{
                                     $access_id = 0;
                                 }
                                 $access_type = Validation::getAccessType($access_id);
                                 $category_name = "Header";
                                 $menus = Menu::getMenus($access_type, $category_name);
                                 $subUrl = Menu::getMenuSubUrl($access_type);
+                                
                                 ?>
                                 <ul class="nav navbar-nav"> 
                                     <?php
-                                    foreach ($menus as $menu_key => $menu_value) {
+                                    foreach($menus as $menu_key => $menu_value){
                                         $class = "";
-                                        if (isset($pageDetails[0]["url"]) && $menu_value['url'] == $pageDetails[0]["url"]) {
-                                            $class = 'class="active"';
+                                        if(isset($pageDetails[0]["url"]) && $menu_value['url'] == $pageDetails[0]["url"]){
+                                            $class = 'class="active"'; 
                                         }
-                                        ?>
-                                        <li><a href="<?= SERVER_URL ?>/<?= $subUrl ?><?= $menu_value['url'] ?>" <?= $class ?> ><?= $menu_value['name'] ?></a></li>
-                                        <?php
+                                    ?>
+                                    <li><a href="<?=SERVER_URL?>/<?=$subUrl?><?=$menu_value['url']?>" <?=$class?> ><?=$menu_value['name']?></a></li>
+                                    <?php
                                     }
                                     ?>
                                 </ul>
@@ -164,7 +165,7 @@
                                 </button>
                             </div>
                             <div class="mainmenu pull-left">
-                                <img src="<?= USER_IMG_URL ?>/home/add.png" width="500" height="40"/>
+                                <img src="<?=USER_IMG_URL?>/home/add.png" width="500" height="40"/>
                             </div>
                         </div>
                         <div class="col-sm-3">

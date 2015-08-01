@@ -63,6 +63,10 @@
                 <i class="glyphicon glyphicon-edit icon-white"></i>
                 Edit
             </a>
+<!--            <a class="btn btn-danger" href="" onClick="return confirm('Are you sure want to delete record')">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>-->
         </td>
     </tr>
      <?php } ?>
@@ -72,8 +76,22 @@
     </div>
     </div>
     <!--/span-->
-    </div><!--/row-->   <!-- content ends -->
+
+    </div><!--/row-->
+
+    
+   
+
+    
+    
+    
+
+    <!-- content ends -->
     </div><!--/#content.col-md-0-->
 </div><!--/fluid-row-->
+
+   
+
 </div><!--/.fluid-container-->
+
 <?php include 'footer.php';?>

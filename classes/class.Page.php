@@ -12,7 +12,7 @@
  *
  * @author anjain
  */
-class Page {
+class Page  extends AccessType{
     public $page_id = null;
     public $page_name = null;
     public $category_id = null;
@@ -28,11 +28,11 @@ class Page {
     public  function getPageDetails(){
         $db = new Db();
         $where = "";
-        if(isset($this->data['url'])){
-            $where.= " AND url = ".$db->quote($this->data['url']) ;
+        if(isset($this->url)){
+            $where.= " AND url = ".$db->quote($this->url) ;
         }
-        if(isset($this->data['category_id'])){
-            $where.= " AND category_id = ".$db->quote($this->data['category_id']) ;
+        if(isset($this->category_id)){
+            $where.= " AND category_id = ".$db->quote($this->category_id) ;
         }
         $query = "SELECT * FROM ".$this->tableName(). " WHERE active = 1  ".$where;
         return $db->select($query);
@@ -55,17 +55,6 @@ class Page {
         $cat_name = $db->quote($cat_name);
         $query = "SELECT id FROM ".$this->tableName()." WHERE url = $cat_name and active = 1";
         return $db->select($query);
-    }
-    
-     public function getPageTypeUrl($page_type_id){
-        $db = new Db();
-        $page_type_id = $db->quote($page_type_id);
-        $query = "SELECT url FROM ".$this->tableName()."  where id =  $page_type_id AND active = 1";
-        $row = $db->select($query);
-        if(count($row)){
-            return $row[0]['url'];
-        }
-        return "";
     }
     
     public function save(){

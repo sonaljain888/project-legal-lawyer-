@@ -72,7 +72,7 @@ if(strlen(Request::post("submit"))){
                                     $menu_name = $row['name'];
                                     $category_id = $row['category_id'];
                                     $parent_id = $row['parent_id'];
-                                    $results = $row['image'];
+                                     $results = MENU_IMG_URL."/" . $row['image'];
                                     $url = $row['url'];
                                     $access_type = $row['access_type'];
                                     $menu_order = $row['menu_order'];
@@ -136,7 +136,8 @@ if(strlen(Request::post("submit"))){
                                     </tr>
                                     <tr>
                                         <td><label for="exampleInputFile">image Upload</label></td>
-                                        <td><input type="file" name="menu-image" value="<?php echo MENU_IMG_URL."/" . $results;  ?>" >
+                                        <td><img height="40" width="40" src="<?php echo $results;?>"><br/>
+                                            <input type="file" name="menu-image" value="<?php echo $results;  ?>" ><?php echo $results;  ?>
                                         </td>
                                     </tr>
                                     <tr>
