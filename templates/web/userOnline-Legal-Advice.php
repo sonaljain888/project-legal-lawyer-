@@ -36,12 +36,13 @@
                                 <td> <select required="" name="city_id" class="form-control">
                                         <option value="">--Select City--</option>
                                         <?php
-                                            $city = City::getName();
-                                           if(count($city)){
-                                            foreach ($city as $key => $row) {
+                                        
+                                            $cityObj = new City();
+                                            $rows=$cityObj->getAll();
+                                            foreach ($rows as  $row) {
                                              ?>
                                            <option value="<?= $row['id'] ?>"><?= $row['name'] ?> </option>
-                                           <?php }} ?>
+                                           <?php } ?>
                                     </select></td>
                             </tr>
                             <tr>
