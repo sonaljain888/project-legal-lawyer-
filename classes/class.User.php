@@ -103,17 +103,11 @@ class User {
         $this->isEmailExist();
         //Check Mobile number is exist
         $this->isMobileExist();
-<<<<<<< HEAD
         //print_r($_POST); exit;
         $errors = Error::get("error");
         if(!count($errors)){
             if(is_numeric($this->user_id)){
             $db= new Db();
-=======
-        print_r($_POST); exit;
-        $errors = Error::get("error");
-        if(!count($errors)){
->>>>>>> origin/master
             $name = $db->quote($this->name);
             $email = $db->quote($this->email_id);
             $pass = $db->quote($this->password);
@@ -126,7 +120,6 @@ class User {
             $experience = $db->quote($this->experience);
             $specialization = $db->quote($this->specialization);
             $pra_court = $db->quote($this->pra_court);
-<<<<<<< HEAD
             $active = $db->quote($this->active);
             $query = "INSERT INTO " . $this->tableName() . " (Name,EmailId,Password,Website,Mobile,Address,City,Location,Education,
                 Experiance,Specialization,PracticingCourt,active)
@@ -146,10 +139,6 @@ class User {
         }
     }
     }
-=======
-        }
-    }
->>>>>>> origin/master
 
     public function isEmailExist() {
         $db = new Db();
@@ -192,7 +181,6 @@ return $db->select($query);
 return false;
 }
 
-<<<<<<< HEAD
 
 function getall(){
    $db= new Db();
@@ -202,8 +190,6 @@ function getall(){
 
 
 
-=======
->>>>>>> origin/master
 function userupdate() {
 if (isset($_POST['submit'])) {
 $db = new Db();
