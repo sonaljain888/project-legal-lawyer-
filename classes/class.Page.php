@@ -53,7 +53,7 @@ class Page  extends AccessType{
     public function getPageCategoryId($cat_name){
         $db = new Db();
         $cat_name = $db->quote($cat_name);
-        $query = "SELECT id FROM ".$this->tableName()." WHERE url = $cat_name and active = 1";
+       $query = "SELECT id FROM page_category WHERE url = $cat_name and active = 1"; 
         return $db->select($query);
     }
     

@@ -12,7 +12,7 @@
  *
  * @author anjain
  */
-class Property {
+class Company extends Lpo {
     public $id = null;
     public $user_id = null;
     public $name = null;
@@ -25,14 +25,15 @@ class Property {
     public $description = null;
     public $active = null;
 
-    public function get($key){
-        return $this->$key;
-    }
     
-    public function set($key , $val){
+     public function set($key , $val){
         $this->$key = $val;
     }
     
+    public function get($key){
+        return $this->$key;
+    }
+     
     public function tableName(){
         return "company";
     }
@@ -53,32 +54,42 @@ class Property {
         return false;
     }
     
-    public function save(){
-        if(is_numeric($this->id) && is_string($this->name)){
-            $db = new Db();
-            $id = $db->quote($this->id);
-            $user_id = $db->quote($this->user_id);
+    public function company(){
+        return $this->getAll();
+    }
+
+        public function addcompany(){
+        $errors = Error::get("error");
+        if (!count($errors) || $errors == "") {
+             $db = new Db();
+        
+            if (Session::read("userid")) {
+                $user_id = Session::read("userid");
+                //print_r($user_id);                exit();
+           
+           // $user_id=$db->quote($this->user_id);
             $name = $db->quote($this->name);
-            $city = $db->quote($this->city);
-            $location =$db->quote($this->location);
-            $website = $db->quote($this->website);
             $email = $db->quote($this->email);
+            $website = $db->quote($this->website);
             $phone = $db->quote($this->phone);
+            $city = $db->quote($this->city);
+            $location = $db->quote($this->location);
             $specialization = $db->quote($this->specialization);
-            $description = $db->quote($this->description);
-            $active = $db->quote($this->active);
+            $description=$db->quote($this->description);
             $query = "INSERT INTO ".$this->tableName()." (user_id,name,city,location,website,email,phone,specialization,description,active) 
-                VALUES($user_id,$name,$city,$location,$website,$email,$phone,$specialization,$description, $active) 
-                ON DUPLICATE KEY UPDATE    
-              user_id=$user_id,name=$name,city=$city,location=$location,website=$website,email=$email,phone=$phone,specialization=$specialization,
-                  description=$description,active=$active";
+                VALUES($user_id,$name,$city,$location,$website,$email,$phone,$specialization,$description,1)";    
             if($db->query($query)){
+                //print_r($query);                exit();
                 if($db->affectedRows()){
                     return true;
                 }
             }
         }
+        
+        }
         return false;
     }
 }
 ?>
+
+

@@ -17,7 +17,7 @@
                                     <div class="lawyerinfo text-center">
                                         <img  alt="<?= $data["name"] ?>" rel="<?= $data["name"] ?> logo" name="<?= $data["name"] ?>"
                                               src="<?php echo MENU_IMG_URL . "/" . $data['image']; ?>" width="80px"height="75px"></br>
-                                        <a class="btn btn-default"  href="<?= $data["url"] ?>"><?= $data["name"] ?> </a>
+                                        <a class="btn btn-default"  href="<?= SERVER_URL ."/". $data["url"] ?>"><?= $data["name"] ?> </a>
                                     </div>
 
                                 </div>

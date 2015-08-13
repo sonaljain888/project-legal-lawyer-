@@ -1,6 +1,4 @@
-<?php
-$email = $name = $mobile = $website = $address = $city = $locality = $exp = $education = $specialization = $court = "";
-?>
+
 <section class="login-form">
     <div class="row error" align="center"><?php echo Error::displayError();?></div>
     <div class="row">
@@ -27,50 +25,20 @@ $email = $name = $mobile = $website = $address = $city = $locality = $exp = $edu
         </div>
         <div class="col-sm-6">
            <h2>Registration </h2>
-           <?php
-           if(Request::post("action") == "registration"){
-               $name = Request::post("name");
-               $email = Request::post("email");
-               $password=  Request::post("password");
-               $mobile = Request::post("mobile");
-               $website = Request::post("website");
-               $add = Request::post("add");
-               $city = Request::post("city");
-               $location = Request::post("location");
-               $exp = Request::post("experience");
-               $education = Request::post("education");
-               $specialization = Request::post("specialization");
-               $court = Request::post("pra_court");
-               $userObj= new User();
-               $userObj->set("name",$name);
-               $userObj->set("email",$email);
-               $userObj->set("password",$password);
-               $userObj->set("mobile",$mobile);
-               $userObj->set("website",$website);
-               $userObj->set("add",$add);
-               $userObj->set("city",$city);
-               $userObj->set("location",$location);
-               $userObj->set("experience",$exp);
-               $userObj->set("education",$education);
-               $userObj->set("specialization",$specialization);
-               $userObj->set("pra_court",$court);
-               if($userObj->registration()){
-                   General::redirectUrl("user_profile.php");
-                 } 
-             
-           }
-           ?>
+          
             <form id="form_background" action="" method="POST" enctype="multipart/form-data" >
                 <input type="hidden" name="action" value="registration">
                 <input type="hidden" name="type" value="user">
+                
                                     <table  align="center" width="100%">
+                                        
                                         <tr>
                                             <td id="label">Name:</td>
-                                            <td><input id="name" type="text" name="name" placeholder="Name" required="" value="<?=$name?>" /></td>
+                                            <td><input id="name" type="text" name="name" placeholder="Name" required="" /></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Email:</td>
-                                            <td><input id="email" type="email" name="email" placeholder="Email"required="" value="<?=$email?>"/></td>
+                                            <td><input id="email" type="email" name="email" placeholder="Email"required="" /></td>
                                         </tr>
                                         
                                         <tr>
@@ -79,43 +47,43 @@ $email = $name = $mobile = $website = $address = $city = $locality = $exp = $edu
                                         </tr>
                                         <tr>
                                             <td id="label">Confirm Password:</td>
-                                            <td><input id="r_password" type="password"  name="r_password" placeholder="Confirm Password"required=""/></td>
+                                            <td><input id="r_password" type="password"  name="password" placeholder="Confirm Password"required=""/></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Mobile No:</td>
-                                            <td><input id="mobile" type="text" name="mobile" placeholder="Mobile No" required="" value="<?=$mobile?>"/></td>
+                                            <td><input id="mobile" type="text" name="mobile" placeholder="Mobile No" required="" /></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Website :</td>
-                                            <td><input id="website" type="url" name="website" placeholder="Website" required="" value="<?=$website?>"/></td>
+                                            <td><input id="website" type="url" name="website" placeholder="Website" required="" v/></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Address:</td>
-                                            <td><input id="add" type="text" name="add" placeholder="Address" required="" value="<?=$address?>"/></td>
+                                            <td><input id="add" type="text" name="add" placeholder="Address" required="" /></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Practicing City:</td>
-                                            <td><input id="city" type="text" name="city" placeholder="Type city(Ex.:Banglore)" required="" value="<?=$city?>"/></td>
+                                            <td><input id="city" type="text" name="city" placeholder="Type city(Ex.:Banglore)" required="" /></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Area / Locality:</td>
-                                            <td><input id="location"  name="location" type="text" placeholder="" required="" value="<?=$locality?>"/></td>
+                                            <td><input id="location"  name="location" type="text" placeholder="" required="" /></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Experience (in years):</td>
-                                            <td><input id="experience"  name="experience" type="text" placeholder="" required="" value="<?=$exp?>"/></td>
+                                            <td><input id="experience"  name="experience" type="text" placeholder="" required="" /></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Educational Details:</td>
-                                            <td><input id="education"  name="education" type="text" placeholder="" required="" value="<?=$education?>"/></td>
+                                            <td><input id="education"  name="education" type="text" placeholder="" required=""/></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Specialization:</td>
-                                            <td><input id="specialization"  name="specialization" type="text" placeholder="" required="" value="<?=$specialization?>"/></td>
+                                            <td><input id="specialization"  name="specialization" type="text" placeholder="" required="" /></td>
                                         </tr>
                                         <tr>
                                             <td id="label">Practicing Courts:</td>
-                                            <td><input id="pra_court"  name="pra_court" type="text" placeholder="" required="" value="<?=$court?>"/></td>
+                                            <td><input id="pra_court"  name="pra_court" type="text" placeholder="" required="" /></td>
                                         </tr>
                                        
                                         <tr>

@@ -1,30 +1,4 @@
-<?php 
-if(strlen(Request::post("submit"))){
-    $name = Request::post("name");
-    $city= Request::post("city");
-    $location= Request::post("location");
-    $website= Request::post("website");
-    $email= Request::post("email");
-    $phone= Request::post("phone");
-    $specialization= Request::post("specialization");
-    $description= Request::post("description");
-    $active = Validation::getStautsTinyVal(Request::post("active"));
-    $companyObj = new Company();
-    $companyObj->set("name", $name);
-    $companyObj->set("city",$city);
-    $companyObj->set("location",$location);
-    $companyObj->set("website",$website);
-    $companyObj->set("email",$email);
-    $companyObj->set("phone",$phone);
-    $companyObj->set("specialization",$specialization);
-    $companyObj->set("description",$description);
-    $companyObj->set("active", $active);
-    if($companyObj->save()){
-        General::redirectUrl("");
-    }
-}
 
-?>
 <section class="login-form">
     <div class="container">
         <div class="row">
@@ -41,6 +15,8 @@ if(strlen(Request::post("submit"))){
                             </ul>
                         </div>
                         <form id="form_background" action="" method="POST">
+                            <input type="hidden" name="action" value="addcompany">
+                            <input type="hidden" name="type" value="company">
                             <table height="680" align="center" width="80%">
                                 
                                 <tr>
@@ -61,11 +37,11 @@ if(strlen(Request::post("submit"))){
                                 </tr>
                                 <tr>
                                     <td id="label">Email:</td>
-                                    <td><input type="text" name="email" placeholder="City Name"/></td>
+                                    <td><input type="text" name="email" placeholder="Email"/></td>
                                 </tr>
                                 <tr>
                                     <td id="label">Phone No:</td>
-                                    <td><input type="text" name="phone" placeholder="Address"/></td>
+                                    <td><input type="text" name="phone" placeholder="Phone No"/></td>
                                 </tr>
                                 <tr>
                                     <td id="label">Specialization:</td>
@@ -73,27 +49,30 @@ if(strlen(Request::post("submit"))){
                                 </tr>
                                 <tr>
                                     <td id="label">Description:</td>
-                                    <td><input id="text"  name="description" type="text" placeholder="Practicing Courts"/></td>
+                                    <td><input id="text"  name="description" /></td>
                                 </tr>
+                                
                                 <tr>
-                                        <td id="label">Active:</td>
-                                        <td><input type="checkbox" name="active" <?php
-                                        if ($country_status == 1){
-                                            echo "checked";
-                                        }
-                                        ?>></td>
-                                    </tr>
-                                <tr>
-                                    <td colspan="4" align="center"><input type="submit" value="Submit" name="submit" id="submit-btn" />&nbsp;&nbsp;&nbsp;<a href="">
-                                            <input type="button" value="Cancel" id="cancel-btn" /></a></td>
+                                     <tr>
+                                            <td colspan="2" align="center">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                              <input type="submit" value="submit" name="submit" id="submit-btn"/>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                              <input type="button" name="" value="Cancel"  id="cancel-btn" />  
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                 </tr>
                             </table>
                         </form>	
-                    </div><!--/category-tab-->
+                    </div>
                 </div>
-            </div><!--/category-tab-->
+            </div>
         </div>
     </div>
 </div>
 </section>
-<!--/Footer-->
+

@@ -172,12 +172,11 @@ class Menu {
         $id = $db->quote($this->menu_id);
         $query = "SELECT image FROM " . $this->tableName() . " WHERE id=$id";
         $result = $db->select($query);
-      
         if(isset($result[0])&& count($result[0])>0){
-            if(strlen($result[0]["image"]) > 0){
-                unlink(WEB_FOLDER.MENU_IMG_FOLDER."/".$result[0]["image"]);
-                
-            }
+//            if(strlen($result[0]["image"]) > 0){
+//                unlink(WEB_FOLDER.MENU_IMG_FOLDER."/".$result[0]["image"]);
+//                
+//            }
         } 
         return true;
     }

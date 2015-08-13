@@ -11,25 +11,50 @@
                     </div>
                     <div class="tab-content" style="height: 100%;">
                         <div class="tab-pane fade active in" id="tshirt" >
-                            <table style="margin-left: 10%;float:left;">
-                                <tr>
+                            <table class="documenttbl">
+                                <tr class="documentshow"><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forms</td></tr>
+                                <?php
+                                $documentcategoeyObj = new DocumentCategory();
+                                $result = $documentcategoeyObj->getForms();
+                                foreach ($result as $row){
+                                   
+                            ?>
+                                <tr class="trboder">
                                     <td><img src="<?=SERVER_URL?>/images/folder.jpg" name="" rel="" height="30px" width="30px"/>
-                                            <a href="legaldocuments.php"></a>
+                                            <a href="<?=SERVER_URL?>/documentsFile/<?php $row["id"];?>"><?php echo $row["name"];?> </a>
                                         </td>
+                                        <?php }?>
                                 </tr>
                             </table>  
-                            <table  style="margin-left: 15%;float:left;">
-                                    <tr>
-                                        <td><img src="<?=SERVER_URL?>/images/folder.jpg" name="" rel="" height="30px" width="30px"/>
-                                            <a href="legaldocuments.php"></a>
+                            <table class="documenttbl">
+                                <tr class="documentshow"><td>&nbsp;&nbsp;&nbsp;&nbsp;Agreements</td></tr>
+                                    <tr class="trboder">
+                                        
+                                          <?php
+                                $documentcategoeyObj = new DocumentCategory();
+                                $result = $documentcategoeyObj->getAgreements();
+                                foreach ($result as $row){
+                            ?>
+                                <tr class="trboder">
+                                    <td><img src="<?=SERVER_URL?>/images/folder.jpg" name="" rel="" height="30px" width="30px"/>
+                                            <a href=""><?php echo $row["name"];?> </a>
                                         </td>
+                                        <?php }?>
                                     </tr>                              
                             </table> 
-                            <table style="margin-left: 20%;float:left;">                               
-                                    <tr>
-                                        <td><img src="<?=SERVER_URL?>/images/folder.jpg" name="" rel="" height="30px" width="30px"/>
-                                            <a href="legaldocuments.php"></a>
+                            <table class="documenttbl">
+                                <tr class="documentshow"><td>&nbsp;&nbsp;&nbsp;&nbsp;Judgements</td></tr>
+                                    <tr class="trboder">
+                                          <?php
+                                $documentcategoeyObj = new DocumentCategory();
+                                $result = $documentcategoeyObj->getJudgements();
+                                foreach ($result as $row){
+                            ?>
+                                <tr class="trboder">
+                                    <td><img src="<?=SERVER_URL?>/images/folder.jpg" name="" rel="" height="30px" width="30px"/>
+                                            <a href=""><?php echo $row["name"];?> </a>
                                         </td>
+                                        <?php }?>
                                     </tr>
                             </table>  
 

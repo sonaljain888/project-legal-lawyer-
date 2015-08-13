@@ -2786,11 +2786,11 @@ cursor: pointer;
 }
 #submit-btn
 {
-    background: red;height: 45px;color: white ;
+    background: red;height: 45px; width: 100px; color: white ;
 }
 #cancel-btn
 {
-    width:130px;background: gray;height: 45px;color: white
+    width:130px;background: gray;height: 45px; width: 100px;color: white;
 }
 #tr
 {
@@ -2819,4 +2819,22 @@ cursor: pointer;
 #viewques
 {
     background:red;color: white;float: right;margin-right: 10%;float:right;
+}
+.documentshow{
+    background: #FC9A11;
+    padding: 5px 20px 5px 10px;
+    color: #FFF;
+    line-height: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    float: left;
+    width: 150px;
+    text-align: center;
+}
+.documenttbl{
+    margin-left: 10%;float:left;
+}
+.trboder{
+    border-bottom: 2px #adadad dotted;
 }

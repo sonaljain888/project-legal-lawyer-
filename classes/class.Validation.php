@@ -74,6 +74,18 @@ class Validation {
         }
         return 0;
     }
+    public static function getDocumentType($id){
+        if($id){
+            $db = new Db();
+            $id = $db->quote($id);
+            $query = "SELECT * FROM document_type WHERE id = $id AND active = 1";
+            $row = $db->select($query);
+            if(strlen($row[0]['type'])){
+                return $row[0]['type'];
+            }
+        }
+        return "Public";
+    }
        
 }
 

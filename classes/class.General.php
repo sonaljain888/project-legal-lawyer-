@@ -32,6 +32,9 @@ class General {
         } elseif (count($urlArray) == 1 && $urlArray[0] != "admin") {
             $page->set("url", $urlArray[0]);
             $templateFile = USER_TEMPLATE_FOLDER . '/page.php';
+        } elseif ((count($urlArray) > 1 && count($urlArray) < 6) && $urlArray[0] == "lpo-training") {
+            $page->set("url", $urlArray[0]);
+            $templateFile = USER_TEMPLATE_FOLDER . '/page.php';
         } elseif ((count($urlArray) > 1 && count($urlArray) < 6) && $urlArray[0] != "admin") {
             $page->set("url", $urlArray[1]);
             $categoryDetails = $page->getPageCategoryId($urlArray[0]);
@@ -42,8 +45,9 @@ class General {
         } else {
             $notFoundPage = true;
         }
+        // print_r($page);        exit();
         $pageDetails = $page->getPageDetails();
-        //print_r($pageDetails); exit;
+        // print_r($pageDetails); exit;
         if (is_array($pageDetails) && count($pageDetails) && count($pageDetails[0])) {
             if ($pageDetails[0]["access_type"] == 1 && count($urlArray)) {
                 switch ($urlArray[0]) {
@@ -58,7 +62,7 @@ class General {
                     default :
                         break;
                 }
-            } elseif (isset($urlArray[1]) && !is_numeric($urlArray[1]) && count($urlArray)==2 && $urlArray[1] == "logout" ) {  //Logout 
+            } elseif (isset($urlArray[1]) && !is_numeric($urlArray[1]) && count($urlArray) == 2 && $urlArray[1] == "logout") {  //Logout 
             } elseif (isset($urlArray[2]) && is_numeric($urlArray[2]) && $urlArray[2] > 0) {  //User and Lawyer public profile using id
             } elseif (!Session::isLogged() && $pageDetails[0]["access_type"] > 1 && !is_numeric($urlArray[2])) {
                 Error::set(INVALID_LOGIN);
@@ -107,6 +111,17 @@ class General {
                     $user = new User();
                     $user->set("email_id", Request::post("email"));
                     $user->set("password", Request::post("password"));
+                    $user->set("re_pass", Request::post("r_password"));
+                    $user->set("name", Request::post("name"));
+                    $user->set("mobile", Request::post("mobile"));
+                    $user->set("website", Request::post("website"));
+                    $user->set("add", Request::post("add"));
+                    $user->set("city", Request::post("city"));
+                    $user->set("location", Request::post("location"));
+                    $user->set("experience", Request::post("experience"));
+                    $user->set("education", Request::post("education"));
+                    $user->set("specialization", Request::post("specialization"));
+                    $user->set("pra_court", Request::post("pra_court"));
                     $action = Request::post("action");
                     $result = $user->$action();
                     $page = new Page();
@@ -118,8 +133,108 @@ class General {
                         $page->set("access_id", Session::read("access_type"));
                         $pageType = $page->getPageTypeUrl();
                         $r_url = SERVER_URL . "/$pageType/home";
+                    } elseif ($result && $action == 'editProfile') {
+                        $page->set("access_id", Session::read("access_type"));
+                        $pageType = $page->getPageTypeUrl();
+                        $r_url = SERVER_URL . "/$pageType/profile";
                     } else {
                         $r_url = SERVER_URL . "/login";
+                    }
+                    General::redirectUrl($r_url);
+                    break;
+                case 'company':
+                    $company = new Company();
+                    $company->set("user_id", Request::post("userid"));
+                    $company->set("name", Request::post("name"));
+                    $company->set("city", Request::post("city"));
+                    $company->set("location", Request::post("location"));
+                    $company->set("website", Request::post("website"));
+                    $company->set("email", Request::post("email"));
+                    $company->set("phone", Request::post("phone"));
+                    $company->set("specialization", Request::post("specialization"));
+                    $company->set("description", Request::post("description"));
+                    $action = Request::post("action");
+                    $result = $company->$action();
+//                        print_r($result);                        exit();
+                    $page = new Page();
+                    if ($result && $action == 'addcompany') {
+                        $page->set("access_id", Session::read("access_type"));
+                        $pageType = $page->getPageTypeUrl();
+                        $r_url = SERVER_URL . "/$pageType/company";
+                    } else {
+                        $r_url = SERVER_URL . "/lpo-training";
+                    }
+                    General::redirectUrl($r_url);
+                    break;
+                case 'question':
+                    $ques = new Questions();
+                    $ques->set("user_id", Request::post("userid"));
+                    $ques->set("question", Request::post("question"));
+                    $ques->set("heading", Request::post("heading"));
+                    $ques->set("topic_id", Request::post("topic_id"));
+                    $ques->set("city", Request::post("city"));
+                    $action = Request::post("action");
+                    $result = $ques->$action();
+//                       print_r($result);                        exit();
+                    $page = new Page();
+                    if ($result && $action == 'addquestion') {
+                        $page->set("access_id", Session::read("access_type"));
+                        $pageType = $page->getPageTypeUrl();
+                        $r_url = SERVER_URL . "/$pageType/online-legal-advice";
+                    } else {
+                        $r_url = SERVER_URL . "/home";
+                    }
+                    General::redirectUrl($r_url);
+                    break;
+                case 'jobs':
+                    $job = new Jobs();
+                    $job->set("user_id", Request::post("userid"));
+                    $job->set("heading", Request::post("heading"));
+                    $job->set("education", Request::post("education"));
+                    $job->set("exp_min", Request::post("exp_min"));
+                    $job->set("exp_max", Request::post("exp_max"));
+                    $job->set("salary", Request::post("salary"));
+                    $job->set("description", Request::post("description"));
+                    $job->set("c_name", Request::post("companyname"));
+                    $job->set("email", Request::post("email"));
+                    $job->set("phone", Request::post("phone"));
+                    $job->set("city", Request::post("city"));
+                    $job->set("address", Request::post("address"));
+                    $result = $company->$action();
+//                        print_r($result);                        exit();
+                    $page = new Page();
+                    if ($result && $action == 'addjobs') {
+                        $page->set("access_id", Session::read("access_type"));
+                        $pageType = $page->getPageTypeUrl();
+                        $r_url = SERVER_URL . "/$pageType/jobs";
+                    } else {
+                        $r_url = SERVER_URL . "/$pageType/home";
+                    }
+                    General::redirectUrl($r_url);
+                    break;
+                case 'resumes':
+                    $job = new Jobs();
+                    $job->set("user_id", Request::post("userid"));
+                    $job->set("heading", Request::post("heading"));
+                    $job->set("education", Request::post("education"));
+                    $job->set("exp_min", Request::post("exp_min"));
+                    $job->set("exp_max", Request::post("exp_max"));
+                    $job->set("salary", Request::post("salary"));
+                    $job->set("description", Request::post("description"));
+                    $job->set("c_name", Request::post("companyname"));
+                    $job->set("email", Request::post("email"));
+                    $job->set("phone", Request::post("phone"));
+                    $job->set("city", Request::post("city"));
+                    $job->set("address", Request::post("address"));
+                    $result = $company->$action();
+//                         print_r($result);                        exit();
+                    $page = new Page();
+                    if ($result && $action == 'addjobs') {
+                        $page->set("access_id", Session::read("access_type"));
+                        $pageType = $page->getPageTypeUrl();
+                        $r_url = SERVER_URL . "/$pageType/jobs";
+                    } else {
+                        $r_url = SERVER_URL . "/$pageType/home";
                     }
                     General::redirectUrl($r_url);
                     break;
@@ -151,11 +266,17 @@ class General {
                 break;
             case "blog":
                 break;
+            case "lpo-training":
+                if (isset($urlArray[1])) {
+                    $obj = new $urlArray[1]();
+                    $content = $obj->$urlArray[1]();
+                }
+                break;
             default :
                 $content = array();
                 break;
         }
-        
+
         if (count($content) == 1) {
             $content = $content[0];
         } elseif (count($content) > 1) {
@@ -165,4 +286,5 @@ class General {
         }
         return $content;
     }
+
 }

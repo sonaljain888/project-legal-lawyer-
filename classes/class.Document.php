@@ -5,8 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  * Description of class
  *
@@ -54,6 +52,17 @@ class Document {
             return $db->select($query);
         }
         return false;
+    }
+    
+    public function getAllFile($category_id){
+        if(is_numeric($this->id)){
+            $db = new Db();
+            $id = $db->quote($this->id);
+            $category_id=$db->quote($this->category_id);
+            $query = "SELECT *, FROM ".$this->tableName()." where category_id=$category_id and id=$id ";
+            return $db->select($query);
+        }
+        return false;        
     }
     
     public function save(){

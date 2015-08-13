@@ -1,6 +1,3 @@
-
-
-
 <section class="login-form">
     <div class="container">
         <div class="row">
@@ -18,11 +15,11 @@
                                             <option  value="">Types of document</option>
                                             <?php 
                                             $documentcategoeyObj = new DocumentCategory();
-                                                        $rows = $documentcategoeyObj->getAll();
-                                                        foreach ($rows as $row) {
-                                                            ?>
-                                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['name']; ?> </option>
-                                                        <?php } ?>
+                                            $rows = $documentcategoeyObj->getAll();
+                                             foreach ($rows as $row) {
+                                                ?>
+                                              <option value="<?php echo $row['id'] ?>"><?php echo $row['name']; ?> </option>
+                                              <?php } ?>
                                         </select>
                                     </td>   
                                 </tr>

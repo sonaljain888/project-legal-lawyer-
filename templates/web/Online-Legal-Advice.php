@@ -11,8 +11,8 @@
                         </ul>
                     </div>
                     <form style="border: 1px black;" action="" method="POST">
-                        <input type="hidden" name="action" value="question">
-                        <input type="hidden" name="type" value="user">
+                        <input type="hidden" name="action" value="addquestion">
+                            <input type="hidden" name="type" value="question">
                         <table height="650px;">
                             <tr><td><input type="text" name="question" value="" id="second_td" style="display:none;"/></td></tr>
                             <tr>
@@ -27,13 +27,20 @@
                                 <td id="first_td">Topic : </td>
                                 <td><select id="second_td" name="topic_id">
                                         <option value="">--Select Topic--</option>
+                                         <?php
+                            $topicObj = new Topic();
+                            $rows = $topicObj->getAll();
+                            foreach ($rows as $row) {
+                                ?> 
+                                        <option value="<?php echo $row['topic_id']; ?>"><?php echo $row['topic']; ?></option>
+                                        <?php }?>
                                     </select>
 
                                 </td>
                             </tr>
                             <tr>
                                 <td id="first_td"> City : </td>
-                                <td> <select required="" name="city_id" class="form-control">
+                                <td> <select required="" name="city" class="form-control">
                                         <option value="">--Select City--</option>
                                         <?php
                                         
@@ -46,14 +53,11 @@
                                     </select></td>
                             </tr>
                             <tr>
-                                <td colspan="4" align="center"><input type="submit" name="submit" value="Submit" style="width:150px;background: red;height: 45px;color: white" />&nbsp;&nbsp;&nbsp;
-                                    <a href="question.php"><input type="button" value="Cancel" style="width:150px;background: gray;height: 45px;color: white" /></a></td>
+                                <td colspan="4" align="center"><input type="submit" name="submit" value="Submit" id="submit-btn" />&nbsp;&nbsp;&nbsp;
+                                    <a href="question.php"><input type="button" value="Cancel" id="cancel-btn" /></a></td>
                             </tr>
                         </table>
                     </form>
-                    <a href="#"><img src="" width="30" height="30">Disclaimer</a> 
-                    <a href="#"><img src="" alt="" width="30" height="30">Need More Privacy?</a>
-                    <a href="#"><img src="" alt="help" width="30" height="30">&nbsp;Need Help?</a>
                     <p><b>Note : </b>Enter the characters in the box below Enter the characters in the box below Enter the characters in the box below Enter the characters in the box below Enter the characters in the box below Enter the characters in the box below. </p>
                 </div>
             </div>

@@ -19,13 +19,13 @@ if(strlen(Request::post("submit"))){
     $menuObj->set("access_type", $access_type);
     $menuObj->set("menu_order", $menu_order);
     $menuObj->set("menu_status", $menu_status);
-    if($menuObj->isImageExist()){
+    
     if ($menuObj->isMenuExist()) {
         $upload = Upload::factory(MENU_IMG_FOLDER . "/");
         $upload->file($_FILES["menu-image"]); 
         $results = $upload->upload();
-       $menuObj->set("image", $results["filename"]);
-       
+        $menuObj->set("image", $results["filename"]);
+        if($menuObj->isImageExist()){
         if ($menuObj->save()) {
             General::redirectUrl("menu.php");
         } else {

@@ -46,6 +46,22 @@ class DocumentCategory {
         return false;
     }
     
+    public function getForms(){
+        $db = new Db();
+        $query ="SELECT * from ".$this->tableName()." where doc_type_id ='1' ";
+        return $db->select($query);
+    }
+    public function getAgreements(){
+        $db = new Db();
+        $query ="SELECT * from ".$this->tableName()." where doc_type_id ='2' ";
+        return $db->select($query);
+    }
+    public function getJudgements(){
+        $db = new Db();
+        $query ="SELECT * from ".$this->tableName()." where doc_type_id ='3' ";
+        return $db->select($query);
+    }
+    
     public function save(){
         if(is_numeric($this->id) && is_string($this->name)){
             $db = new Db();

@@ -12,7 +12,7 @@
  *
  * @author anjain
  */
-class Company {
+class Resume {
 //put your code here
     public $id = null;
 //    public $topic = null;
@@ -27,7 +27,7 @@ class Company {
     }
     
     public function tableName(){
-        return "company";
+        return "resume";
     }
     
     public function getAll(){
